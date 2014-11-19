@@ -91,8 +91,8 @@ public class Request {
 			System.out.println(docRelevance.getName() + " : " + docRelevance.getScore());
 		}
 		
-//		Evaluation evalution = new Evaluation();
-//		evalution.evaluate(docRelevanceList, 1);
+		Evaluation evalution = new Evaluation();
+		evalution.evaluate(docRelevanceList, 1);
 
 		sc.close();
 	}
