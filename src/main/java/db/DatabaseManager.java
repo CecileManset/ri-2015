@@ -93,5 +93,15 @@ public class DatabaseManager {
 		else
 			return true;
 	}
+	
+	public int wordFrequencyInCorpus(String word) {
+		BasicDBObject query = new BasicDBObject("word", word);
+		
+		DBObject wordInfo = COLLECTION.findOne(query);
+		if (wordInfo == null)
+			return 0;
+		else
+			return (Integer) wordInfo.get("corpusFrequency");
+	}
 
 }

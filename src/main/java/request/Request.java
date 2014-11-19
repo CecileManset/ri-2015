@@ -93,16 +93,6 @@ public class Request {
 		
 //		Evaluation evalution = new Evaluation();
 //		evalution.evaluate(docRelevanceList, 1);
-		
-
-		//		ArrayList<WordRelevance> listDocuments = request.computeIntersectionDocuments(null, wordList);
-		//		if (listDocuments.isEmpty()) {
-		//			
-		//		}
-		//		else {
-		////			sortList(listDocuments);
-		//			request.printList(listDocuments);
-		//		}
 
 		sc.close();
 	}
@@ -114,6 +104,7 @@ public class Request {
 		for (int i=1; i<=NUMBER_DOCUMENTS;i++) {
 			String docName = documentNameFormat(i);
 			int weight = 0;
+			int ponderedWeight = 0;
 			System.out.println("number of words : " + relevantDocsPerWord.keySet().size());
 			for (String word : relevantDocsPerWord.keySet()) {
 				System.out.println("new word tested " + i );
@@ -123,12 +114,50 @@ public class Request {
 //				}
 				System.out.println("couuuuuuuuuuuuuuuuuucouuuuuuuuuuuuuuuuuu" + getRelevanceForDocument(docName, relevantDocsPerWord.get(word)));
 				weight += getRelevanceForDocument(docName, relevantDocsPerWord.get(word));
+				ponderedWeight += getRelevanceForDocument(docName, relevantDocsPerWord.get(word)) * weightedWordFrequencyInCorpus(word);
 			}
-			if (weight > 0) {
-				docRelevanceList.add(new DocumentRelevance(docName, weight/relevantDocsPerWord.keySet().size()));
+//			if (weight > 0) {
+			if (ponderedWeight > 0) {
+				docRelevanceList.add(new DocumentRelevance(docName, ponderedWeight/relevantDocsPerWord.keySet().size()));
 			}
 		}
 		return docRelevanceList;
+	}
+	
+	private int weightedWordFrequencyInCorpus(String word) {
+		int nbOccurences = DBManager.wordFrequencyInCorpus(word);
+		System.out.println("Word : " + word + " appears " + nbOccurences + " times.");
+		if (nbOccurences >= 100) {
+			return 1;
+		}
+		else if (nbOccurences >= 80) {
+			return 2;
+		}
+		else if (nbOccurences >= 50) {
+			return 3;
+		}
+		else if (nbOccurences >= 20) {
+			return 5;
+		}
+		else if (nbOccurences >= 10) {
+			return 8;
+		}
+		else if (nbOccurences >= 5) {
+			return 13;
+		}
+		else if (nbOccurences == 4) {
+			return 21;
+		}
+		else if (nbOccurences == 3) {
+			return 34;
+		}
+		else if (nbOccurences == 2) {
+			return 55;
+		}
+		else if (nbOccurences == 1) {
+			return 89;
+		}
+		return 0;
 	}
 	
 	private int getRelevanceForDocument(String docName, ArrayList<WordRelevance> list) {
