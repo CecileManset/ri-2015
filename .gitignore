@@ -3,3 +3,4 @@
 .settings/
 target/
 .DS_Store
+./src/main/java/configuration/Configuration.java
