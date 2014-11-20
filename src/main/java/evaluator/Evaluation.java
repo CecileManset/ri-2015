@@ -7,14 +7,16 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import request.DocumentRelevance;
+import request.Request;
 
 public class Evaluation {
 
 	private static String PATH_TO_QREL = "/Users/cecilemanset/Documents/INSA/5IL/WebSem/qrels/";
+	private static String PATH_TO_REQUESTS = "./requests.txt";
 	private static int DOC_NB = 138;
 	private static int REQ_NB = 9;
 	
-	private String[] requestTab;
+	private String[] requestTab = new String[REQ_NB];
 
 //	private ArrayList<DocumentRelevance> qrels;
 
@@ -35,8 +37,21 @@ public class Evaluation {
 //				sc.close();
 //			}
 //		}
+		File input = new File(PATH_TO_REQUESTS);
+		Scanner sc = null;
+		int ind = 0;
 		
-		
+		try {
+			sc = new Scanner(input);
+			while (sc.hasNextLine()) {
+				requestTab[ind] = sc.nextLine();
+				ind++;
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} finally {
+			sc.close();
+		}
 	}
 
 //	private ArrayList<DocumentRelevance> createQrel(int qrelId) {
@@ -119,9 +134,24 @@ public class Evaluation {
 //			System.out.println(docRelevance.getName() + " " + docRelevance.getScore());
 //		}
 		
+//		System.out.println("PA 5 : " + df.format(computePerformance(docRelevanceList, docRelevanceTab, 5)));
+//		System.out.println("PA 10 : " + df.format(computePerformance(docRelevanceList, docRelevanceTab, 10)));
+//		System.out.println("PA 25 : " + df.format(computePerformance(docRelevanceList, docRelevanceTab, 25)));
+	
+		docRelevanceTab = readQrel(qrelId);
+		System.out.println("Request " + qrelId);
 		System.out.println("PA 5 : " + df.format(computePerformance(docRelevanceList, docRelevanceTab, 5)));
 		System.out.println("PA 10 : " + df.format(computePerformance(docRelevanceList, docRelevanceTab, 10)));
 		System.out.println("PA 25 : " + df.format(computePerformance(docRelevanceList, docRelevanceTab, 25)));
+		System.out.println("_________________________");
 	}
-
+	
+	public static void main(String[] args) {
+		Evaluation eval = new Evaluation();
+		Request req = new Request();
+		for (int i = 1 ; i <= 8 ; i++) {
+			ArrayList<DocumentRelevance> docRelevanceList = req.doRequest(eval.requestTab[i-1]);
+			eval.evaluate(docRelevanceList, i);
+		}
+	}
 }
