@@ -18,25 +18,7 @@ public class Evaluation {
 	
 	private String[] requestTab = new String[REQ_NB];
 
-//	private ArrayList<DocumentRelevance> qrels;
-
 	public Evaluation() {
-//		qrels = new ArrayList<DocumentRelevance>();
-//		for (int qrelId = 1; qrelId <= 9; qrelId++) {
-//			File input = new File(PATH_TO_QREL + "qrelQ" + qrelId + ".txt");
-//			Scanner sc = null;
-//			try {
-//				sc = new Scanner(input);
-//				while (sc.hasNextLine()) {
-//					String[] qrel = sc.next().split(" ");
-//					qrels.add(new DocumentRelevance(qrel[0], Float.parseFloat(qrel[1])));
-//				}
-//			} catch (FileNotFoundException e) {
-//				e.printStackTrace();
-//			} finally {
-//				sc.close();
-//			}
-//		}
 		File input = new File(PATH_TO_REQUESTS);
 		Scanner sc = null;
 		int ind = 0;
@@ -53,25 +35,6 @@ public class Evaluation {
 			sc.close();
 		}
 	}
-
-//	private ArrayList<DocumentRelevance> createQrel(int qrelId) {
-//		ArrayList<DocumentRelevance> qrels = new ArrayList<DocumentRelevance>();
-//		File input = new File(PATH_TO_QREL + "qrelQ" + qrelId + ".txt");
-//		Scanner sc = null;
-//		try {
-//			sc = new Scanner(input);
-//			while (sc.hasNextLine()) {
-////				String[] qrel = sc.next().split("[ ]+|\t");
-////				System.out.println("toto " + qrel.length);
-//				qrels.add(new DocumentRelevance(sc.next(), Float.parseFloat(sc.next())));
-//			}
-//		} catch (FileNotFoundException e) {
-//			e.printStackTrace();
-//		} finally {
-//			sc.close();
-//		}
-//		return qrels;
-//	}
 	
 	// Renvoie un tableau qui fait correspondre l'indice de pertinence établi par un humain à chaque document du corpus, 
 	// pour une requête donnée. Attention, le tableau commence en 0 et les docs en 1 !!
@@ -79,6 +42,7 @@ public class Evaluation {
 		float[] docRelevanceTab = new float[DOC_NB];
 		int ind = 0;
 		String relevance;
+		
 		File input = new File(PATH_TO_QREL + "qrelQ" + qrelId + ".txt");
 		Scanner sc = null;
 		
@@ -124,20 +88,7 @@ public class Evaluation {
 	public void evaluate(ArrayList<DocumentRelevance> docRelevanceList, int qrelId) {
 		DecimalFormat df = new DecimalFormat("#.##");
 		float[] docRelevanceTab = readQrel(qrelId);
-//		System.out.println("Qrels list: ");
-//		for (int i = 0 ; i < doc_nb ; i++) {
-//			System.out.println("doc " + i + " " + docRelevanceTab[i]);
-//		}
-//
-//		System.out.println("Our list: ");
-//		for (DocumentRelevance docRelevance : docRelevanceList) {
-//			System.out.println(docRelevance.getName() + " " + docRelevance.getScore());
-//		}
-		
-//		System.out.println("PA 5 : " + df.format(computePerformance(docRelevanceList, docRelevanceTab, 5)));
-//		System.out.println("PA 10 : " + df.format(computePerformance(docRelevanceList, docRelevanceTab, 10)));
-//		System.out.println("PA 25 : " + df.format(computePerformance(docRelevanceList, docRelevanceTab, 25)));
-	
+
 		docRelevanceTab = readQrel(qrelId);
 		System.out.println("Request " + qrelId);
 		System.out.println("PA 5 : " + df.format(computePerformance(docRelevanceList, docRelevanceTab, 5)));
@@ -149,6 +100,7 @@ public class Evaluation {
 	public static void main(String[] args) {
 		Evaluation eval = new Evaluation();
 		Request req = new Request();
+		
 		for (int i = 1 ; i <= 8 ; i++) {
 			ArrayList<DocumentRelevance> docRelevanceList = req.doRequest(eval.requestTab[i-1]);
 			eval.evaluate(docRelevanceList, i);
