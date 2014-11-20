@@ -25,9 +25,8 @@ public class Parser {
 	private static String DELIMITERS = "[.,;?!-: ]+";
 	
 	private final static int NUMBER_DOCUMENTS = 138;
-	
-	public Parser() {
 		
+	public Parser() {
 	}
 
 	private String[] extractTextFromHtmlDoc(int id) {
@@ -68,6 +67,11 @@ public class Parser {
 		}
 		return stopList;
 	}
+	
+	public String normalizeWord(String word) {
+		WordNormalizer wordNormalizer = new WordNormalizer();
+		return wordNormalizer.normalizeWord(word);
+	}
 
 	public static void main(String[] args) {
 		Parser parser = new Parser();
@@ -88,6 +92,7 @@ public class Parser {
 				// if this word is not in the stoplist
 				if (!stopList.contains(wordHtml)) {
 					// if this word is in the wordsMap
+					wordHtml = parser.normalizeWord(wordHtml);
 					if (wordsMap.containsKey(wordHtml)) {						
 						// if this word was already in the document we increment the occurrence (in wordAlreadyInDocument)
 						// otherwise 
