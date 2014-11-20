@@ -1,12 +1,13 @@
 package request;
 
+import indexer.WordNormalizer;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Scanner;
 
 import db.DatabaseManager;
-import evaluator.Evaluation;
 
 public class Request {
 
@@ -17,9 +18,13 @@ public class Request {
 	public Request() {
 		DBManager = new DatabaseManager();
 	}
-	// Retrieve relevant documents associated to word from DB
-	// Return list of relevant documents
-	private ArrayList<WordRelevance> getRelevantDocs(String word) {//, int nbRelevantDocs) {
+		
+	/**
+	 * Return the list of documents relevant to the specific word
+	 * @param word 
+	 * @return
+	 */
+	private ArrayList<WordRelevance> getRelevantDocs(String word) {
 		ArrayList<WordRelevance> relevantDocs = new ArrayList<WordRelevance>();
 
 		if (DBManager.isInDB(word)) {
@@ -36,58 +41,73 @@ public class Request {
 
 		return relevantDocs;
 	}
-
-	private String[] parseRequest(String request) {
-		return request.split(" ");
-	}
-
-	private ArrayList<WordRelevance> intersection(ArrayList<WordRelevance> list1, ArrayList<WordRelevance> list2) {
-		ArrayList<WordRelevance> list = new ArrayList<WordRelevance>();
-
-		for (WordRelevance relevance1 : list1) {
-			for (WordRelevance relevance2 : list2) {
-				if (relevance1.getName().equals(relevance2.getName())) {
-					list.add(relevance1);
-				}
-			}
-		}
-
-		return list;
-	}
 	
-	public ArrayList<DocumentRelevance> doRequest(String request) {
-		ArrayList<DocumentRelevance> result = new ArrayList<DocumentRelevance>();
+	/**
+	 * Use WordNormalizer to normalize the words of the request
+	 * @param str
+	 * 		word to normalize
+	 * @return
+	 * 		normalized word
+	 */
+	private String normalizeWord(String str) {
+	    WordNormalizer wordNormalizer = new WordNormalizer();
+	    return wordNormalizer.normalizeWord(str);
+	}
 
-		HashMap<String, ArrayList<WordRelevance>> relevantDocsPerWord = new HashMap<String, ArrayList<WordRelevance>>();
-		String[] wordList = parseRequest(request);
-
-		for (String word : wordList) {
-			relevantDocsPerWord.put(word, getRelevantDocs(word));
+	/**
+	 * Split the request in a String array
+	 * @param request
+	 * 		request to split
+	 * @return
+	 * 		array containing words of the request
+	 */
+	private String[] parseRequest(String request) {
+		String[] result = request.split(" ");
+		for (int i=0;i<result.length;i++) {
+			result[i] = normalizeWord(result[i]);
 		}
-
-		result = getRelevantDocsForRequest(relevantDocsPerWord);
-		Collections.sort(result);
-
 		return result;
 	}
 
+//	private ArrayList<WordRelevance> intersection(ArrayList<WordRelevance> list1, ArrayList<WordRelevance> list2) {
+//		ArrayList<WordRelevance> list = new ArrayList<WordRelevance>();
+//
+//		for (WordRelevance relevance1 : list1) {
+//			for (WordRelevance relevance2 : list2) {
+//				if (relevance1.getName().equals(relevance2.getName())) {
+//					list.add(relevance1);
+//				}
+//			}
+//		}
+//
+//		return list;
+//	}
+	
+	/**
+	 * Retrieve the documents relevant to the request
+	 * @param relevantDocsPerWord
+	 * 		a hashmap which associates to each word of the request the list of relevant documents
+	 * @return
+	 * 		a list of Documents relevant to the request with a score 
+	 */
 	private ArrayList<DocumentRelevance> getRelevantDocsForRequest(
 			HashMap<String, ArrayList<WordRelevance>> relevantDocsPerWord) {
 		ArrayList<DocumentRelevance> docRelevanceList = new ArrayList<DocumentRelevance>();
 
+		outerloop:
 		for (int i=1; i<=NUMBER_DOCUMENTS;i++) {
 			String docName = documentNameFormat(i);
 			int weight = 0;
 			int ponderedWeight = 0;
-			System.out.println("number of words : " + relevantDocsPerWord.keySet().size());
+			System.out.println("Document tested: " + docName);
 			for (String word : relevantDocsPerWord.keySet()) {
-				System.out.println("new word tested " + i );
-//				if (getRelevanceForDocument(docName, relevantDocsPerWord.get(word)) == 0) {
-//					System.out.println("toooooootooooooooo");
-//					break;
-//				}
-				System.out.println("couuuuuuuuuuuuuuuuuucouuuuuuuuuuuuuuuuuu" + getRelevanceForDocument(docName, relevantDocsPerWord.get(word)));
+				System.out.println("new word tested : " + word );
+				if (getRelevanceForDocument(docName, relevantDocsPerWord.get(word)) == 0) {
+					System.out.println("toooooootooooooooo");
+					continue outerloop;
+				}
 				weight += getRelevanceForDocument(docName, relevantDocsPerWord.get(word));
+				System.out.println("weighted relevance is : " + getRelevanceForDocument(docName, relevantDocsPerWord.get(word)) * weightedWordFrequencyInCorpus(word));
 				ponderedWeight += getRelevanceForDocument(docName, relevantDocsPerWord.get(word)) * weightedWordFrequencyInCorpus(word);
 			}
 //			if (weight > 0) {
@@ -98,9 +118,15 @@ public class Request {
 		return docRelevanceList;
 	}
 	
+	/**
+	 * Give a score to a word based on this frequency in the corpus
+	 * @param word
+	 * 		word to score
+	 * @return
+	 * 		a score
+	 */
 	private int weightedWordFrequencyInCorpus(String word) {
 		int nbOccurences = DBManager.wordFrequencyInCorpus(word);
-		System.out.println("Word : " + word + " appears " + nbOccurences + " times.");
 		if (nbOccurences >= 100) {
 			return 1;
 		}
@@ -134,6 +160,15 @@ public class Request {
 		return 0;
 	}
 	
+	/**
+	 * Return the relevance of a word for a specific document
+	 * @param docName
+	 * 		document name
+	 * @param list
+	 * 		list of relevant documents for a word
+	 * @return
+	 * 		relevance
+	 */
 	private int getRelevanceForDocument(String docName, ArrayList<WordRelevance> list) {
 		int occurences = 0;
 		for (WordRelevance relevance : list) {
@@ -144,17 +179,23 @@ public class Request {
 		}
 		return occurences;
 	}
-
-	private void printList(ArrayList<WordRelevance> listDocuments) {
-		for (WordRelevance relevance : listDocuments) {
-			System.out.println(relevance.getName());
+	
+	public ArrayList<DocumentRelevance> doRequest(String request) {
+		ArrayList<DocumentRelevance> result = new ArrayList<DocumentRelevance>();
+		
+		HashMap<String, ArrayList<WordRelevance>> relevantDocsPerWord = new HashMap<String, ArrayList<WordRelevance>>();
+		String[] wordList = parseRequest(request);
+		
+		for (String word : wordList) {
+			relevantDocsPerWord.put(word, getRelevantDocs(word));			
 		}
+		
+		result = getRelevantDocsForRequest(relevantDocsPerWord);
+		Collections.sort(result);
+
+		return result;
 	}
-	
-	private static String documentNameFormat(int docId) {
-		return "D"+docId+".html";
-	}
-	
+
 	public static void main(String[] args) {
 		Request request = new Request();
 
@@ -188,12 +229,10 @@ public class Request {
 		for (DocumentRelevance docRelevance : docRelevanceList) {
 			System.out.println(docRelevance.getName() + " : " + docRelevance.getScore());
 		}
-		
-		Evaluation evalution = new Evaluation();
-		evalution.evaluate(docRelevanceList, 1);
 
 		sc.close();
+	}	
+	
+	private static String documentNameFormat(int docId) {
+		return "D"+docId+".html";
 	}
-}
-
-
