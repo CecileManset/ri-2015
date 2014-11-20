@@ -6,20 +6,19 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import configuration.Configuration;
 import request.DocumentRelevance;
 import request.Request;
 
 public class Evaluation {
 
-	private static String PATH_TO_QREL = "/Users/cecilemanset/Documents/INSA/5IL/WebSem/qrels/";
-	private static String PATH_TO_REQUESTS = "./requests.txt";
 	private static int DOC_NB = 138;
 	private static int REQ_NB = 9;
 	
 	private String[] requestTab = new String[REQ_NB];
 
 	public Evaluation() {
-		File input = new File(PATH_TO_REQUESTS);
+		File input = new File(Configuration.PATH_TO_REQUESTS);
 		Scanner sc = null;
 		int ind = 0;
 		
@@ -43,7 +42,7 @@ public class Evaluation {
 		int ind = 0;
 		String relevance;
 		
-		File input = new File(PATH_TO_QREL + "qrelQ" + qrelId + ".txt");
+		File input = new File(Configuration.PATH_TO_QREL + "qrelQ" + qrelId + ".txt");
 		Scanner sc = null;
 		
 		try {
@@ -101,7 +100,7 @@ public class Evaluation {
 		Evaluation eval = new Evaluation();
 		Request req = new Request();
 		
-		for (int i = 1 ; i <= 8 ; i++) {
+		for (int i = 1 ; i <= REQ_NB ; i++) {
 			ArrayList<DocumentRelevance> docRelevanceList = req.doRequest(eval.requestTab[i-1]);
 			eval.evaluate(docRelevanceList, i);
 		}

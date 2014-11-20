@@ -13,6 +13,7 @@ import org.json.JSONObject;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
+import configuration.Configuration;
 import request.WordRelevance;
 import db.DatabaseManager;
 
@@ -20,8 +21,6 @@ import db.DatabaseManager;
 public class Parser {
 
 	//private static Logger LOGGER = Logger.getLogger(Parser.class);
-	private static String PATH_TO_STOPLIST = "C:\\Users\\Nicolas\\Downloads\\stopliste.txt";
-	private static String PATH_TO_CORPUS = "C:\\Users\\Nicolas\\Downloads\\CORPUS\\D";
 	private static String DELIMITERS = "[.,;?!-: ]+";
 	
 	private final static int NUMBER_DOCUMENTS = 138;
@@ -31,7 +30,7 @@ public class Parser {
 	}
 
 	private String[] extractTextFromHtmlDoc(int id) {
-		File input = new File(PATH_TO_CORPUS + id + ".html");
+		File input = new File(Configuration.PATH_TO_CORPUS + id + ".html");
 		String text = null;
 		try {
 			Document doc = Jsoup.parse(input, "UTF-8");
@@ -51,7 +50,7 @@ public class Parser {
 
 			String sCurrentLine;
 
-			br = new BufferedReader(new FileReader(PATH_TO_STOPLIST));
+			br = new BufferedReader(new FileReader(Configuration.PATH_TO_STOPLIST));
 
 			while ((sCurrentLine = br.readLine()) != null) {
 				stopList.add(sCurrentLine);
