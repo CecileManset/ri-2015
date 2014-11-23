@@ -89,10 +89,10 @@ public class Evaluation {
 		float[] docRelevanceTab = readQrel(qrelId);
 
 		docRelevanceTab = readQrel(qrelId);
-		System.out.println("Request " + qrelId);
-		System.out.println("PA 5 : " + df.format(computePerformance(docRelevanceList, docRelevanceTab, 5)));
-		System.out.println("PA 10 : " + df.format(computePerformance(docRelevanceList, docRelevanceTab, 10)));
-		System.out.println("PA 25 : " + df.format(computePerformance(docRelevanceList, docRelevanceTab, 25)));
+		System.out.println("Request " + qrelId + ": \""+ requestTab[qrelId] + " \"");
+		System.out.println("Précision à 5 : " + df.format(computePerformance(docRelevanceList, docRelevanceTab, 5)));
+		System.out.println("Précision à 10 : " + df.format(computePerformance(docRelevanceList, docRelevanceTab, 10)));
+		System.out.println("Précision à 25 : " + df.format(computePerformance(docRelevanceList, docRelevanceTab, 25)));
 		System.out.println("_________________________");
 	}
 	
