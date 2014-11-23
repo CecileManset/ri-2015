@@ -56,7 +56,7 @@ public class Evaluation {
 				ind++;
 			}
 			if (ind != DOC_NB) {
-				System.out.println("WARNING : an error might have occurred. The Qrel file was weirdly parsed.");
+				System.out.println("WARNING : an error might have occurred. The Qrel file " + qrelId + " was weirdly parsed.");
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
