@@ -236,3 +236,4 @@ public class Request {
 	private static String documentNameFormat(int docId) {
 		return "D"+docId+".html";
 	}
+}
