@@ -33,8 +33,14 @@ public class Evaluation {
 		} finally {
 			sc.close();
 		}
-	}
+	}	
 	
+	public String[] getRequestTab() {
+		return requestTab;
+	}
+
+
+
 	// Renvoie un tableau qui fait correspondre l'indice de pertinence établi par un humain à chaque document du corpus, 
 	// pour une requête donnée. Attention, le tableau commence en 0 et les docs en 1 !!
 	private float[] readQrel(int qrelId) {
@@ -89,7 +95,7 @@ public class Evaluation {
 		float[] docRelevanceTab = readQrel(qrelId);
 
 		docRelevanceTab = readQrel(qrelId);
-		System.out.println("Request " + qrelId + ": \""+ requestTab[qrelId] + " \"");
+		System.out.println("Request " + qrelId + ": \""+ requestTab[qrelId - 1] + " \"");
 		System.out.println("Précision à 5 : " + df.format(computePerformance(docRelevanceList, docRelevanceTab, 5)));
 		System.out.println("Précision à 10 : " + df.format(computePerformance(docRelevanceList, docRelevanceTab, 10)));
 		System.out.println("Précision à 25 : " + df.format(computePerformance(docRelevanceList, docRelevanceTab, 25)));
@@ -100,9 +106,39 @@ public class Evaluation {
 		Evaluation eval = new Evaluation();
 		Request req = new Request();
 		
+		DecimalFormat df = new DecimalFormat("#.##");
+		float p5, p10, p25, meanP5 = 0, meanP10 = 0, meanP25 = 0;
+
+		float[] docRelevanceTab;
 		for (int i = 1 ; i <= REQ_NB ; i++) {
 			ArrayList<DocumentRelevance> docRelevanceList = req.doRequest(eval.requestTab[i-1]);
-			eval.evaluate(docRelevanceList, i);
+//			eval.evaluate(docRelevanceList, i);
+			
+			docRelevanceTab = eval.readQrel(i);
+			p5 = eval.computePerformance(docRelevanceList, docRelevanceTab, 5);
+			p10 = eval.computePerformance(docRelevanceList, docRelevanceTab, 10);
+			p25 = eval.computePerformance(docRelevanceList, docRelevanceTab, 25);
+			
+			meanP5 += p5;
+			meanP10 += p10;
+			meanP25 += p25;
+			
+			System.out.println("Request " + i + ": \""+ eval.getRequestTab()[i - 1] + " \"");
+			System.out.println("Précision à 5 : " + df.format(p5));
+			System.out.println("Précision à 10 : " + df.format(p10));
+			System.out.println("Précision à 25 : " + df.format(p25));
+			System.out.println("_________________________");
+			
 		}
+		meanP5 /= REQ_NB;
+		meanP10 /= REQ_NB;
+		meanP25 /= REQ_NB;
+		
+		System.out.println("Mean : ");
+		System.out.println("Précision à 5 : " + df.format(meanP5));
+		System.out.println("Précision à 10 : " + df.format(meanP10));
+		System.out.println("Précision à 25 : " + df.format(meanP25));
+		System.out.println("_________________________");
+		
 	}
 }

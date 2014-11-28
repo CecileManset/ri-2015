@@ -21,7 +21,7 @@ import db.DatabaseManager;
 public class Parser {
 
 	//private static Logger LOGGER = Logger.getLogger(Parser.class);
-	private static String DELIMITERS = "[.,;?!-: ]+";
+	private static String DELIMITERS = "[#@,;?!:\"' -]+";
 	
 	private final static int NUMBER_DOCUMENTS = 138;
 		
@@ -33,11 +33,13 @@ public class Parser {
 		String text = null;
 		try {
 			Document doc = Jsoup.parse(input, "UTF-8");
-			text = doc.text().toLowerCase();
+			text = doc.text();
+			System.out.println(text);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		System.out.println(text.split(DELIMITERS)[1]);
 		return text.split(DELIMITERS);
 	}
 
@@ -116,9 +118,10 @@ public class Parser {
 		}
 		
 		for (String word : wordsMap.keySet()) {
-			System.out.println("word : " + word + " appears in : ");
+//			System.out.println("word : " + word + " appears in : ");
 			JSONObject wordJSON = new JSONObject();
 			wordJSON.put("word", word);
+//			System.out.println(word);
 			wordJSON.put("corpusFrequency", wordsIdf.get(word));
 			JSONArray documentsArray = new JSONArray();
 			for (WordRelevance relevance : wordsMap.get(word)) {
@@ -126,10 +129,10 @@ public class Parser {
 				relevanceJSON.put("name", relevance.getName());
 				relevanceJSON.put("tf", relevance.getOccurrences());
 				documentsArray.put(relevanceJSON);
-				System.out.println("document : " + relevance.getName() + " tf : " + relevance.getOccurrences());
+//				System.out.println("document : " + relevance.getName() + " tf : " + relevance.getOccurrences());
 			}
 			wordJSON.put("appearances", documentsArray);
-			System.out.println(wordJSON.toString());
+//			System.out.println(wordJSON.toString());
 			dbManager.insertDBEntry(wordJSON);
 		}
 	}

@@ -25,6 +25,14 @@ public class WordNormalizerTest {
 	@After
 	public void tearDown() throws Exception {
 	}
+	
+	@Test
+	public void testSplit() {
+		String str = "2012 tototo";
+		String[] strArray = str.split("[#@,;?!:\"' -]+");
+		assertEquals("2012", strArray[0]);
+		assertEquals("tototo", strArray[1]);
+	}
 
 	@Test
 	public void testNormalizeWord() {
@@ -34,6 +42,7 @@ public class WordNormalizerTest {
 		assertEquals("tete", wordNormalizer.normalizeWord("TETE"));
 		assertEquals("totete", wordNormalizer.normalizeWord("tötétè"));
 		assertEquals("tuti", wordNormalizer.normalizeWord("tùTï"));
+		assertEquals("2012", wordNormalizer.normalizeWord("2012"));
 	}
 
 }

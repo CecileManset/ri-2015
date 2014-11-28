@@ -11,11 +11,12 @@ public class WordNormalizer {
 	    String result = pattern.matcher(nfdNormalizedString).replaceAll("");
 	    result = result.toLowerCase();
 	    if (result.endsWith("s")) {
-	    	result = result.substring(0, result.length() -1);
+	    	result = result.substring(0, result.length() - 1);
 	    }
 	    if (result.length() >= 7) {
 	    	result = result.substring(0, 7);
 	    }
 	    return result;
+//		return str;
 	}
 }

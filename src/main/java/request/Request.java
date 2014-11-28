@@ -92,29 +92,42 @@ public class Request {
 	 */
 	private ArrayList<DocumentRelevance> getRelevantDocsForRequest(
 			HashMap<String, ArrayList<WordRelevance>> relevantDocsPerWord) {
+		// list the documents where all the words of the request are present
 		ArrayList<DocumentRelevance> docRelevanceList = new ArrayList<DocumentRelevance>();
+		//list of the documents where only some words of the request are present
+		ArrayList<DocumentRelevance> docRelevanceListAfter = new ArrayList<DocumentRelevance>();
 
 		outerloop:
 		for (int i=1; i<=NUMBER_DOCUMENTS;i++) {
 			String docName = documentNameFormat(i);
 			int weight = 0;
 			int ponderedWeight = 0;
-			System.out.println("Document tested: " + docName);
+			
+			boolean someWordIsMissing = false;
+//			System.out.println("Document tested: " + docName);
 			for (String word : relevantDocsPerWord.keySet()) {
-				System.out.println("new word tested : " + word );
+//				System.out.println("new word tested : " + word );
 				if (getRelevanceForDocument(docName, relevantDocsPerWord.get(word)) == 0) {
-					System.out.println("toooooootooooooooo");
-					continue outerloop;
+//					System.out.println("toooooootooooooooo");
+//					continue outerloop;
+					someWordIsMissing = true;
 				}
 				weight += getRelevanceForDocument(docName, relevantDocsPerWord.get(word));
-				System.out.println("weighted relevance is : " + getRelevanceForDocument(docName, relevantDocsPerWord.get(word)) * weightedWordFrequencyInCorpus(word));
+//				System.out.println("weighted relevance is : " + getRelevanceForDocument(docName, relevantDocsPerWord.get(word)) * weightedWordFrequencyInCorpus(word));
 				ponderedWeight += getRelevanceForDocument(docName, relevantDocsPerWord.get(word)) * weightedWordFrequencyInCorpus(word);
 			}
 //			if (weight > 0) {
-			if (ponderedWeight > 0) {
+			if (ponderedWeight > 0 && !someWordIsMissing) {
 				docRelevanceList.add(new DocumentRelevance(docName, ponderedWeight/relevantDocsPerWord.keySet().size()));
 			}
+			else if (ponderedWeight > 0) {
+				docRelevanceListAfter.add(new DocumentRelevance(docName, ponderedWeight/relevantDocsPerWord.keySet().size()));
+			}
 		}
+		Collections.sort(docRelevanceList);
+		Collections.sort(docRelevanceListAfter);
+		System.out.println("size first list : " + docRelevanceList.size() + " and size second list : " + docRelevanceListAfter.size());
+		System.out.println("if toooooooootoooooooooo was printed, should be true : " + docRelevanceList.addAll(docRelevanceListAfter));
 		return docRelevanceList;
 	}
 	
@@ -191,7 +204,7 @@ public class Request {
 		}
 		
 		result = getRelevantDocsForRequest(relevantDocsPerWord);
-		Collections.sort(result);
+		
 
 		return result;
 	}
