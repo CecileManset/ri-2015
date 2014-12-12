@@ -7,6 +7,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Scanner;
 
+import moduleSparql.SparqlModule;
 import db.DatabaseManager;
 
 public class Request {
@@ -63,6 +64,8 @@ public class Request {
 	 */
 	private String[] parseRequest(String request) {
 		String[] result = request.split(" ");
+		SparqlModule sparqlModule = new SparqlModule();
+		result = sparqlModule.extendRequest(result);
 		for (int i=0;i<result.length;i++) {
 			result[i] = normalizeWord(result[i]);
 		}
