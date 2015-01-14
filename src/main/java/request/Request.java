@@ -1,10 +1,12 @@
 package request;
 
+import indexer.Parser;
 import indexer.WordNormalizer;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Scanner;
 
 import moduleSparql.SparqlModule;
@@ -29,11 +31,7 @@ public class Request {
 		ArrayList<WordRelevance> relevantDocs = new ArrayList<WordRelevance>();
 
 		if (DBManager.isInDB(word)) {
-			ArrayList<WordRelevance> infoList = DBManager.getWordRelevance(word);
-
-			for (WordRelevance docInfo : infoList) {
-				relevantDocs.add(docInfo);
-			}
+			relevantDocs = DBManager.getWordRelevance(word);
 		}
 		else {
 			System.out.println(word + " not contained in DB");
@@ -63,13 +61,34 @@ public class Request {
 	 * 		array containing words of the request
 	 */
 	private String[] parseRequest(String request) {
-		String[] result = request.split(" ");
-		SparqlModule sparqlModule = new SparqlModule();
-		result = sparqlModule.extendRequest(result);
-		for (int i=0;i<result.length;i++) {
-			result[i] = normalizeWord(result[i]);
+		Parser parser = new Parser();
+		
+		
+		List<String> requestList = new ArrayList<String>();
+		String[] requestSplit = request.split("[,]"); //WARNING: if sparql removed, add \\s
+		for (String word : requestSplit) {
+			requestList.add(word);
 		}
-		return result;
+		System.out.println("Request as a list: " + requestList);
+		SparqlModule sparqlModule = new SparqlModule();
+		requestList = sparqlModule.extendRequest(requestList);
+		
+		List<String> result = new ArrayList<String>();		
+		for (int i = 0; i<requestList.size(); i++) {
+			String word = requestList.get(i);
+			if (!parser.createStopList().contains(word)) {
+				String normalizedWord = normalizeWord(word);
+				if (!result.contains(normalizedWord)) {
+					result.add(normalizedWord);
+				}
+			}
+		}
+		System.out.print("Extended request normalized: [");
+		for(String normalizedWord : result) {
+			System.out.print(normalizedWord +", ");
+		}
+		System.out.println("]");
+		return result.toArray(new String[result.size()]);
 	}
 
 //	private ArrayList<WordRelevance> intersection(ArrayList<WordRelevance> list1, ArrayList<WordRelevance> list2) {
@@ -111,7 +130,6 @@ public class Request {
 			for (String word : relevantDocsPerWord.keySet()) {
 //				System.out.println("new word tested : " + word );
 				if (getRelevanceForDocument(docName, relevantDocsPerWord.get(word)) == 0) {
-//					System.out.println("toooooootooooooooo");
 //					continue outerloop;
 					someWordIsMissing = true;
 				}
@@ -130,7 +148,7 @@ public class Request {
 		Collections.sort(docRelevanceList);
 		Collections.sort(docRelevanceListAfter);
 		System.out.println("size first list : " + docRelevanceList.size() + " and size second list : " + docRelevanceListAfter.size());
-		System.out.println("if toooooooootoooooooooo was printed, should be true : " + docRelevanceList.addAll(docRelevanceListAfter));
+		docRelevanceList.addAll(docRelevanceList.size(), docRelevanceListAfter);
 		return docRelevanceList;
 	}
 	
