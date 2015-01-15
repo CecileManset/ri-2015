@@ -85,15 +85,16 @@
     <owl:ObjectProperty rdf:about="&FilmographieV1;aDansDistributionArtistique">
         <rdfs:label xml:lang="fr">a dans sa distribution artistique</rdfs:label>
         <rdfs:label xml:lang="fr">a dans son casting</rdfs:label>
+        <rdfs:label xml:lang="fr">a pour personne</rdfs:label>
         <rdfs:subPropertyOf rdf:resource="&FilmographieV1;aPourContributeur"/>
         <rdfs:subPropertyOf>
             <rdf:Description>
-                <owl:inverseOf rdf:resource="&FilmographieV1;contribueAOeuvre"/>
+                <owl:inverseOf rdf:resource="&FilmographieV1;estDansDistributionArtistique"/>
             </rdf:Description>
         </rdfs:subPropertyOf>
         <rdfs:subPropertyOf>
             <rdf:Description>
-                <owl:inverseOf rdf:resource="&FilmographieV1;estDansDistributionArtistique"/>
+                <owl:inverseOf rdf:resource="&FilmographieV1;contribueAOeuvre"/>
             </rdf:Description>
         </rdfs:subPropertyOf>
     </owl:ObjectProperty>
@@ -198,17 +199,17 @@
         <rdfs:domain rdf:resource="&FilmographieV1;Oeuvre"/>
         <owl:equivalentProperty>
             <rdf:Description>
+                <owl:inverseOf rdf:resource="&FilmographieV1;estDansDistributionArtistique"/>
+            </rdf:Description>
+        </owl:equivalentProperty>
+        <owl:equivalentProperty>
+            <rdf:Description>
                 <owl:inverseOf rdf:resource="&FilmographieV1;contribueAOeuvre"/>
                 <owl:equivalentProperty>
                     <rdf:Description>
                         <owl:inverseOf rdf:resource="&FilmographieV1;estDansDistributionArtistique"/>
                     </rdf:Description>
                 </owl:equivalentProperty>
-            </rdf:Description>
-        </owl:equivalentProperty>
-        <owl:equivalentProperty>
-            <rdf:Description>
-                <owl:inverseOf rdf:resource="&FilmographieV1;estDansDistributionArtistique"/>
             </rdf:Description>
         </owl:equivalentProperty>
     </owl:ObjectProperty>
@@ -220,17 +221,18 @@
     <owl:ObjectProperty rdf:about="&FilmographieV1;aPourContributeurArtistique">
         <rdfs:label xml:lang="en">has as artistic contributor</rdfs:label>
         <rdfs:label xml:lang="fr">a pour contributeur artistique</rdfs:label>
+        <rdfs:label xml:lang="fr">a pour personne</rdfs:label>
         <rdfs:domain rdf:resource="&FilmographieV1;OeuvreArtistique"/>
         <rdfs:subPropertyOf rdf:resource="&FilmographieV1;aPourContributeur"/>
         <owl:inverseOf rdf:resource="&FilmographieV1;contribueArtistiquementAOeuvre"/>
         <rdfs:subPropertyOf>
             <rdf:Description>
-                <owl:inverseOf rdf:resource="&FilmographieV1;estDansDistributionArtistique"/>
+                <owl:inverseOf rdf:resource="&FilmographieV1;contribueAOeuvre"/>
             </rdf:Description>
         </rdfs:subPropertyOf>
         <rdfs:subPropertyOf>
             <rdf:Description>
-                <owl:inverseOf rdf:resource="&FilmographieV1;contribueAOeuvre"/>
+                <owl:inverseOf rdf:resource="&FilmographieV1;estDansDistributionArtistique"/>
             </rdf:Description>
         </rdfs:subPropertyOf>
     </owl:ObjectProperty>
@@ -729,15 +731,15 @@
         <rdfs:comment xml:lang="fr">même si c est hors domaine, on ne met pas de range parce qu un acteur peut jouer dans autre chose qu un film</rdfs:comment>
         <rdfs:subPropertyOf rdf:resource="&FilmographieV1;contribueArtistiquementAOeuvre"/>
         <rdfs:subPropertyOf rdf:resource="&FilmographieV1;estDansDistributionArtistique"/>
-        <owl:propertyChainAxiom rdf:parseType="Collection">
-            <rdf:Description rdf:about="&FilmographieV1;incarne"/>
-            <rdf:Description rdf:about="&FilmographieV1;apparaitDans"/>
-        </owl:propertyChainAxiom>
         <rdfs:subPropertyOf>
             <rdf:Description>
                 <owl:inverseOf rdf:resource="&FilmographieV1;aPourContributeurArtistique"/>
             </rdf:Description>
         </rdfs:subPropertyOf>
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="&FilmographieV1;incarne"/>
+            <rdf:Description rdf:about="&FilmographieV1;apparaitDans"/>
+        </owl:propertyChainAxiom>
     </owl:ObjectProperty>
     
 
