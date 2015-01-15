@@ -1,4 +1,4 @@
-package indexer;
+package normalization;
 
 import static org.junit.Assert.*;
 

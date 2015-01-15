@@ -3,6 +3,8 @@ package moduleSparql;
 import java.util.ArrayList;
 import java.util.List;
 
+import normalization.StopListFactory;
+
 public class SparqlModule {
 
 	private SparqlClient sparqlClient;
@@ -12,6 +14,7 @@ public class SparqlModule {
 	}
 
 	public List<String> extendRequest(List<String> request) {
+		StopListFactory stopList = new StopListFactory();
 		List<String> extendedRequest = new ArrayList<String>();
 		extendedRequest.addAll(request);
 		List<String> result = new ArrayList<String>();
@@ -24,14 +27,18 @@ public class SparqlModule {
 				extendedRequest.addAll(getLabelsAndSubClasses(word));
 			}
 
-
-
-
-
-			for (String word : extendedRequest) {
-				String[] wordList = word.split(" ");
+			for (String label : extendedRequest) {
+				String[] wordList = label.split(" ");
 				for(int i = 0 ; i < wordList.length ; i++) {
-					result.add(wordList[i]);
+					String word = wordList[i];
+					if (!stopList.isInStopList(word)) {
+						if (!result.contains(word)) {
+							result.add(word);
+						}
+						else {
+							//TODO: augmenter son score, puisque présent plusieurs fois dans les labels ?
+						}
+					}
 				}
 			}
 		}

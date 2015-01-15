@@ -1,11 +1,11 @@
-package indexer;
+package normalization;
 
 import java.text.Normalizer;
 import java.util.regex.Pattern;
 
 public class WordNormalizer {
 
-	public String normalizeWord(String str) {
+	public static String normalizeWord(String str) {
 	    String nfdNormalizedString = Normalizer.normalize(str, Normalizer.Form.NFD); 
 	    Pattern pattern = Pattern.compile("\\p{InCombiningDiacriticalMarks}+");
 	    String result = pattern.matcher(nfdNormalizedString).replaceAll("");

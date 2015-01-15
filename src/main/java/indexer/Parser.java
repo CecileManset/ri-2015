@@ -8,39 +8,56 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 
+import normalization.WordNormalizer;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
-import configuration.Configuration;
 import request.WordRelevance;
+import configuration.Configuration;
 import db.DatabaseManager;
 
 
 public class Parser {
 
 	//private static Logger LOGGER = Logger.getLogger(Parser.class);
-	private static String DELIMITERS = "[#@,;?!:\"' -]+";
+	private static String DELIMITERS = "[\n><’+$()_|©\\/%&*\\.#@,;?!:\"'\\s-]+";
 	
 	private final static int NUMBER_DOCUMENTS = 138;
 		
 	public Parser() {
 	}
 
-	private String[] extractTextFromHtmlDoc(int id) {
-		File input = new File(Configuration.PATH_TO_CORPUS + id + ".html");
+	public String[] extractTextFromHtml(String text) {
+		return text.split(DELIMITERS);
+	}
+	
+	private String parseHtml(File input) {
 		String text = null;
 		try {
 			Document doc = Jsoup.parse(input, "UTF-8");
+			Elements meta = doc.select("meta");
+			
+			
+			
 			text = doc.text();
 			System.out.println(text);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println(text.split(DELIMITERS)[1]);
-		return text.split(DELIMITERS);
+		return text;
+	}
+	
+	public String[] extractTextFromHtmlDoc(int id) {
+		File input = new File(Configuration.PATH_TO_CORPUS + id + ".html");
+		String text = parseHtml(input);
+//		System.out.println("text to parse: " + text);
+		return extractTextFromHtml(text);
 	}
 
 	public HashSet<String> createStopList() {
@@ -69,10 +86,10 @@ public class Parser {
 		return stopList;
 	}
 	
-	public String normalizeWord(String word) {
-		WordNormalizer wordNormalizer = new WordNormalizer();
-		return wordNormalizer.normalizeWord(word);
-	}
+//	public String normalizeWord(String word) {
+//		WordNormalizer wordNormalizer = new WordNormalizer();
+//		return wordNormalizer.normalizeWord(word);
+//	}
 
 	public static void main(String[] args) {
 		Parser parser = new Parser();
@@ -93,7 +110,7 @@ public class Parser {
 				// if this word is not in the stoplist
 				if (!stopList.contains(wordHtml)) {
 					// if this word is in the wordsMap
-					wordHtml = parser.normalizeWord(wordHtml);
+					wordHtml = WordNormalizer.normalizeWord(wordHtml);
 					if (wordsMap.containsKey(wordHtml)) {						
 						// if this word was already in the document we increment the occurrence (in wordAlreadyInDocument)
 						// otherwise 

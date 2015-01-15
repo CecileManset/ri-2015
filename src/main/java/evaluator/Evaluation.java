@@ -4,11 +4,12 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
-import configuration.Configuration;
 import request.DocumentRelevance;
 import request.Request;
+import configuration.Configuration;
 
 public class Evaluation {
 
@@ -72,7 +73,7 @@ public class Evaluation {
 		return docRelevanceTab;
 	}
 	
-	private float computePerformance(ArrayList<DocumentRelevance> docRelevanceList, float[] docRelevanceTab, float nbRelevantDocs) {
+	private float computePerformance(List<DocumentRelevance> docRelevanceList, float[] docRelevanceTab, float nbRelevantDocs) {
 		float performance = 0;
 		String docName;
 		int docNb;
@@ -111,7 +112,7 @@ public class Evaluation {
 
 		float[] docRelevanceTab;
 		for (int i = 1 ; i <= REQ_NB ; i++) {
-			ArrayList<DocumentRelevance> docRelevanceList = req.doRequest(eval.requestTab[i-1]);
+			List<DocumentRelevance> docRelevanceList = req.performRequest(eval.requestTab[i-1]);
 //			eval.evaluate(docRelevanceList, i);
 			
 			docRelevanceTab = eval.readQrel(i);

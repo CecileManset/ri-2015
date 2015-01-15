@@ -1,5 +1,10 @@
 package request;
 
+/**
+ * Relevance of a document for a request
+ * @author Nicolas
+ *
+ */
 public class DocumentRelevance implements Comparable<DocumentRelevance> {
 	
 	private String name ;
@@ -43,7 +48,11 @@ public class DocumentRelevance implements Comparable<DocumentRelevance> {
 	}
 	
 	public int compareTo(DocumentRelevance docRelevance) {
-		return docRelevance.getScore() - score;
+		return Float.compare(docRelevance.getNormalizedScore(),normalizedScore);
+	}
+
+	public void addScore(float score) {
+		this.normalizedScore += score;
 	}
 
 }
