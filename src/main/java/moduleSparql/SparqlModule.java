@@ -1,43 +1,62 @@
 package moduleSparql;
 
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SparqlModule {
-	
+
 	private SparqlClient sparqlClient;
-	
+
 	public SparqlModule() {
 		sparqlClient = new SparqlClient("localhost:3030/space");
 	}
-	
-	public String[] extendRequest(String[] request) {
-		String[] extendedRequest = null;
+
+	public List<String> extendRequest(List<String> request) {
+		List<String> extendedRequest = new ArrayList<String>();
+		extendedRequest.addAll(request);
+		List<String> result = new ArrayList<String>();
 		SparqlClient sparqlClient = new SparqlClient("localhost:3030/space");
 
-        String query = "ASK WHERE { ?s ?p ?o }";
-        boolean serverIsUp = sparqlClient.ask(query);
-        if (serverIsUp) {
-            System.out.println("server is UP");
-        }
-        else {
-        	System.out.println("Server is down");
-        }
-		return extendedRequest;
+		String query = "ASK WHERE { ?s ?p ?o }";
+		boolean serverIsUp = sparqlClient.ask(query);
+		if (serverIsUp) {
+			for (String word : request) {
+				extendedRequest.addAll(getLabelsAndSubClasses(word));
+			}
+
+
+
+
+
+			for (String word : extendedRequest) {
+				String[] wordList = word.split(" ");
+				for(int i = 0 ; i < wordList.length ; i++) {
+					result.add(wordList[i]);
+				}
+			}
+		}
+		else {
+			System.out.println("Server is down");
+		}
+		System.out.println("Extended request: " + result.toString());
+		return result;
 	}
-	
-	private String[] returnLabels(String[] request) {
+
+	private List<String> getLabelsAndSubClasses(String word) {
 		String query = "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>"
-                + "SELECT ?labels WHERE\n"
-                + "{\n"
-                + "    ?subject rdfs:label ?object.\n"
-                + "}\n"
-                + "GROUP BY ?piece\n";
-        Iterable<Map<String, String>> results = sparqlClient.select(query);
-        System.out.println("nombre de personnes par pièce:");
-        for (Map<String, String> result : results) {
-            System.out.println(result.get("subject") + " : " + result.get("label"));
-            
-        }
+				+ "SELECT DISTINCT ?label WHERE\n"
+				+ "{\n"
+				+ "    ?class rdfs:label \"" + word + "\"@fr.\n"
+				+ "    ?subClass rdfs:subClassOf ?class .\n"
+				+ "    ?subClass rdfs:label ?label. \n"
+				+ "	   FILTER (lang(?label) = \"fr\")"
+				+ "}\n";
+//		System.out.println(query);
+		//		Iterable<Map<String, String>> results = sparqlClient.select(query);
+		List<String> results = sparqlClient.selectList(query);
+		System.out.println("labels du mot [" + word + "] : " + results.toString());
+		return results;
+
 	}
 
 }

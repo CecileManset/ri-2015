@@ -41,6 +41,20 @@ public class SparqlClient {
     public String getEndpointUri() {
         return endpointUri;
     }
+    
+    public List<String> selectList(String queryString) {
+    	Document document = httpGetXmlContent(queryString);
+    	NodeList resultNodes = document.getElementsByTagName("literal");
+    	List<String> results = new ArrayList<String>();
+    	for (int i = 0; i < resultNodes.getLength(); i++) {
+            Node resultNode = resultNodes.item(i);
+            if (resultNode != null && resultNode.getNodeType() == Node.ELEMENT_NODE) {
+            	results.add(resultNode.getTextContent());
+            }
+    	}
+    	return results;
+    }
+       
 
     /**
      * run a SPARQL query (select) on the remote server

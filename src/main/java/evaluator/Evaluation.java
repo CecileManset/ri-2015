@@ -123,7 +123,7 @@ public class Evaluation {
 			meanP10 += p10;
 			meanP25 += p25;
 			
-			System.out.println("Request " + i + ": \""+ eval.getRequestTab()[i - 1] + " \"");
+			System.out.println("Request " + i + ": \""+ eval.getRequestTab()[i - 1] + "\"");
 			System.out.println("Précision à 5 : " + df.format(p5));
 			System.out.println("Précision à 10 : " + df.format(p10));
 			System.out.println("Précision à 25 : " + df.format(p25));

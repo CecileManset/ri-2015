@@ -43,7 +43,7 @@ public class Parser {
 		return text.split(DELIMITERS);
 	}
 
-	private HashSet<String> createStopList() {
+	public HashSet<String> createStopList() {
 		BufferedReader br = null;
 		HashSet<String> stopList = new HashSet<String>();
 
