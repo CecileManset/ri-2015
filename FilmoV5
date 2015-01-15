@@ -197,17 +197,17 @@
         <rdfs:domain rdf:resource="&FilmographieV1;Oeuvre"/>
         <owl:equivalentProperty>
             <rdf:Description>
-                <owl:inverseOf rdf:resource="&FilmographieV1;estDansDistributionArtistique"/>
-            </rdf:Description>
-        </owl:equivalentProperty>
-        <owl:equivalentProperty>
-            <rdf:Description>
                 <owl:inverseOf rdf:resource="&FilmographieV1;contribueAOeuvre"/>
                 <owl:equivalentProperty>
                     <rdf:Description>
                         <owl:inverseOf rdf:resource="&FilmographieV1;estDansDistributionArtistique"/>
                     </rdf:Description>
                 </owl:equivalentProperty>
+            </rdf:Description>
+        </owl:equivalentProperty>
+        <owl:equivalentProperty>
+            <rdf:Description>
+                <owl:inverseOf rdf:resource="&FilmographieV1;estDansDistributionArtistique"/>
             </rdf:Description>
         </owl:equivalentProperty>
     </owl:ObjectProperty>
@@ -473,12 +473,12 @@
         <owl:inverseOf rdf:resource="&FilmographieV1;estTechnicienPour"/>
         <rdfs:subPropertyOf>
             <rdf:Description>
-                <owl:inverseOf rdf:resource="&FilmographieV1;estDansDistributionArtistique"/>
+                <owl:inverseOf rdf:resource="&FilmographieV1;contribueAOeuvre"/>
             </rdf:Description>
         </rdfs:subPropertyOf>
         <rdfs:subPropertyOf>
             <rdf:Description>
-                <owl:inverseOf rdf:resource="&FilmographieV1;contribueAOeuvre"/>
+                <owl:inverseOf rdf:resource="&FilmographieV1;estDansDistributionArtistique"/>
             </rdf:Description>
         </rdfs:subPropertyOf>
     </owl:ObjectProperty>
@@ -720,23 +720,23 @@
     <!-- http://www.irit.fr/recherches/MELODI/ontologies/FilmographieV1.owl#estActeurDans -->
 
     <owl:ObjectProperty rdf:about="&FilmographieV1;estActeurDans">
-        <rdfs:label>est comédien dans</rdfs:label>
         <rdfs:label xml:lang="en">is actor in </rdfs:label>
         <rdfs:label xml:lang="en">played in </rdfs:label>
-        <rdfs:label xml:lang="fr">a joué dans</rdfs:label>
         <rdfs:label xml:lang="fr">est acteur dans</rdfs:label>
+        <rdfs:label>est comédien dans</rdfs:label>
+        <rdfs:label xml:lang="fr">a joué dans</rdfs:label>
         <rdfs:comment xml:lang="fr">même si c est hors domaine, on ne met pas de range parce qu un acteur peut jouer dans autre chose qu un film</rdfs:comment>
         <rdfs:subPropertyOf rdf:resource="&FilmographieV1;contribueArtistiquementAOeuvre"/>
         <rdfs:subPropertyOf rdf:resource="&FilmographieV1;estDansDistributionArtistique"/>
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="&FilmographieV1;incarne"/>
+            <rdf:Description rdf:about="&FilmographieV1;apparaitDans"/>
+        </owl:propertyChainAxiom>
         <rdfs:subPropertyOf>
             <rdf:Description>
                 <owl:inverseOf rdf:resource="&FilmographieV1;aPourContributeurArtistique"/>
             </rdf:Description>
         </rdfs:subPropertyOf>
-        <owl:propertyChainAxiom rdf:parseType="Collection">
-            <rdf:Description rdf:about="&FilmographieV1;incarne"/>
-            <rdf:Description rdf:about="&FilmographieV1;apparaitDans"/>
-        </owl:propertyChainAxiom>
     </owl:ObjectProperty>
     
 
@@ -3833,6 +3833,7 @@ http://fr.wikipedia.org/wiki/Portail:Cin%C3%A9ma/Arborescence</rdfs:comment>
         <rdf:type rdf:resource="&FilmographieV1;Personne"/>
         <rdf:type rdf:resource="&untitled-ontology-311;Acteur"/>
         <rdf:type rdf:resource="&foaf;Person"/>
+        <rdfs:label>Absa Dialou Toure</rdfs:label>
         <FilmographieV1:aPourPrenom>Absa</FilmographieV1:aPourPrenom>
         <FilmographieV1:aPourPrenom>Absa Dialou</FilmographieV1:aPourPrenom>
         <FilmographieV1:aPourNom>Toure</FilmographieV1:aPourNom>
@@ -3902,6 +3903,7 @@ http://fr.wikipedia.org/wiki/Portail:Cin%C3%A9ma/Arborescence</rdfs:comment>
         <rdf:type rdf:resource="&FilmographieV1;Personne"/>
         <rdf:type rdf:resource="&untitled-ontology-311;Acteur"/>
         <rdf:type rdf:resource="&foaf;Person"/>
+        <rdfs:label>Alain Anthony</rdfs:label>
         <FilmographieV1:aPourNom>Anthony</FilmographieV1:aPourNom>
         <FilmographieV1:aPourPrenom>Alain</FilmographieV1:aPourPrenom>
         <FilmographieV1:aPourSexe rdf:resource="&FilmographieV1;Masculin"/>
@@ -3958,6 +3960,7 @@ http://fr.wikipedia.org/wiki/Portail:Cin%C3%A9ma/Arborescence</rdfs:comment>
         <rdf:type rdf:resource="&FilmographieV1;Personne"/>
         <rdf:type rdf:resource="&untitled-ontology-311;Acteur"/>
         <rdf:type rdf:resource="&foaf;Person"/>
+        <rdfs:label>Alba Gaia Bellugi</rdfs:label>
         <FilmographieV1:aPourNom>Bellugi</FilmographieV1:aPourNom>
         <FilmographieV1:aPourPrenom>Alba Gaia</FilmographieV1:aPourPrenom>
         <FilmographieV1:aPourPrenom>Alba</FilmographieV1:aPourPrenom>
@@ -4032,6 +4035,7 @@ http://fr.wikipedia.org/wiki/Portail:Cin%C3%A9ma/Arborescence</rdfs:comment>
         <rdf:type rdf:resource="&FilmographieV1;Personne"/>
         <rdf:type rdf:resource="&untitled-ontology-311;Acteur"/>
         <rdf:type rdf:resource="&foaf;Person"/>
+        <rdfs:label>Anne Le Ny</rdfs:label>
         <FilmographieV1:aPourPrenom>Anne</FilmographieV1:aPourPrenom>
         <FilmographieV1:aPourNom>Le Ny</FilmographieV1:aPourNom>
         <FilmographieV1:aPourSexe rdf:resource="&FilmographieV1;Feminin"/>
@@ -4106,6 +4110,7 @@ http://fr.wikipedia.org/wiki/Portail:Cin%C3%A9ma/Arborescence</rdfs:comment>
         <rdf:type rdf:resource="&FilmographieV1;Personne"/>
         <rdf:type rdf:resource="&untitled-ontology-311;Acteur"/>
         <rdf:type rdf:resource="&foaf;Person"/>
+        <rdfs:label>Antoine Laurent</rdfs:label>
         <FilmographieV1:aPourPrenom>Antoine</FilmographieV1:aPourPrenom>
         <FilmographieV1:aPourNom>Laurent</FilmographieV1:aPourNom>
         <FilmographieV1:aPourSexe rdf:resource="&FilmographieV1;Masculin"/>
@@ -4162,6 +4167,7 @@ http://fr.wikipedia.org/wiki/Portail:Cin%C3%A9ma/Arborescence</rdfs:comment>
         <rdf:type rdf:resource="&FilmographieV1;Personne"/>
         <rdf:type rdf:resource="&untitled-ontology-311;Acteur"/>
         <rdf:type rdf:resource="&foaf;Person"/>
+        <rdfs:label>Audrey Fleurot</rdfs:label>
         <FilmographieV1:aPourPrenom>Audrey</FilmographieV1:aPourPrenom>
         <FilmographieV1:aPourNom>Fleurot</FilmographieV1:aPourNom>
         <FilmographieV1:aPourSexe rdf:resource="&FilmographieV1;Feminin"/>
@@ -4235,6 +4241,7 @@ http://fr.wikipedia.org/wiki/Portail:Cin%C3%A9ma/Arborescence</rdfs:comment>
         <rdf:type rdf:resource="&FilmographieV1;Personne"/>
         <rdf:type rdf:resource="&untitled-ontology-311;Acteur"/>
         <rdf:type rdf:resource="&foaf;Person"/>
+        <rdfs:label>Benjamin Baroche</rdfs:label>
         <FilmographieV1:aPourPrenom>Benjamin</FilmographieV1:aPourPrenom>
         <FilmographieV1:aPourNom>Baroche</FilmographieV1:aPourNom>
         <FilmographieV1:aPourSexe rdf:resource="&FilmographieV1;Masculin"/>
@@ -4291,6 +4298,7 @@ http://fr.wikipedia.org/wiki/Portail:Cin%C3%A9ma/Arborescence</rdfs:comment>
         <rdf:type rdf:resource="&FilmographieV1;Personne"/>
         <rdf:type rdf:resource="&untitled-ontology-311;Acteur"/>
         <rdf:type rdf:resource="&foaf;Person"/>
+        <rdfs:label>Caroline Bourg</rdfs:label>
         <FilmographieV1:aPourPrenom>Caroline</FilmographieV1:aPourPrenom>
         <FilmographieV1:aPourNom>Bourg</FilmographieV1:aPourNom>
         <FilmographieV1:aPourSexe rdf:resource="&FilmographieV1;Feminin"/>
@@ -4365,6 +4373,7 @@ http://fr.wikipedia.org/wiki/Portail:Cin%C3%A9ma/Arborescence</rdfs:comment>
         <rdf:type rdf:resource="&FilmographieV1;Personne"/>
         <rdf:type rdf:resource="&untitled-ontology-311;Acteur"/>
         <rdf:type rdf:resource="&foaf;Person"/>
+        <rdfs:label>Christian Ameri</rdfs:label>
         <FilmographieV1:aPourNom>Ameri</FilmographieV1:aPourNom>
         <FilmographieV1:aPourPrenom>Christian</FilmographieV1:aPourPrenom>
         <FilmographieV1:aPourSexe rdf:resource="&FilmographieV1;Masculin"/>
@@ -4421,6 +4430,7 @@ http://fr.wikipedia.org/wiki/Portail:Cin%C3%A9ma/Arborescence</rdfs:comment>
         <rdf:type rdf:resource="&FilmographieV1;Personne"/>
         <rdf:type rdf:resource="&untitled-ontology-311;Acteur"/>
         <rdf:type rdf:resource="&foaf;Person"/>
+        <rdfs:label>Clothilde Mollet</rdfs:label>
         <FilmographieV1:aPourNom>Mollet</FilmographieV1:aPourNom>
         <FilmographieV1:aPourPrenom>Clothilde</FilmographieV1:aPourPrenom>
         <FilmographieV1:aPourSexe rdf:resource="&FilmographieV1;Feminin"/>
@@ -4477,6 +4487,7 @@ http://fr.wikipedia.org/wiki/Portail:Cin%C3%A9ma/Arborescence</rdfs:comment>
         <rdf:type rdf:resource="&FilmographieV1;Personne"/>
         <rdf:type rdf:resource="&untitled-ontology-311;Acteur"/>
         <rdf:type rdf:resource="&foaf;Person"/>
+        <rdfs:label>Cyril Mendy</rdfs:label>
         <FilmographieV1:aPourNom>Mendy</FilmographieV1:aPourNom>
         <FilmographieV1:aPourPrenom>Cyril</FilmographieV1:aPourPrenom>
         <FilmographieV1:aPourSexe rdf:resource="&FilmographieV1;Masculin"/>
@@ -4533,6 +4544,7 @@ http://fr.wikipedia.org/wiki/Portail:Cin%C3%A9ma/Arborescence</rdfs:comment>
         <rdf:type rdf:resource="&FilmographieV1;Personne"/>
         <rdf:type rdf:resource="&untitled-ontology-311;Acteur"/>
         <rdf:type rdf:resource="&foaf;Person"/>
+        <rdfs:label>Dominique Daguier</rdfs:label>
         <FilmographieV1:aPourNom>Daguier</FilmographieV1:aPourNom>
         <FilmographieV1:aPourPrenom>Dominique</FilmographieV1:aPourPrenom>
         <FilmographieV1:aPourSexe rdf:resource="&FilmographieV1;Masculin"/>
@@ -4589,6 +4601,7 @@ http://fr.wikipedia.org/wiki/Portail:Cin%C3%A9ma/Arborescence</rdfs:comment>
         <rdf:type rdf:resource="&FilmographieV1;Personne"/>
         <rdf:type rdf:resource="&untitled-ontology-311;Acteur"/>
         <rdf:type rdf:resource="&foaf;Person"/>
+        <rdfs:label>Dominique Henry</rdfs:label>
         <FilmographieV1:aPourNom>Henry</FilmographieV1:aPourNom>
         <FilmographieV1:aPourPrenom>Dominique</FilmographieV1:aPourPrenom>
         <FilmographieV1:aPourSexe rdf:resource="&FilmographieV1;Masculin"/>
@@ -4645,6 +4658,7 @@ http://fr.wikipedia.org/wiki/Portail:Cin%C3%A9ma/Arborescence</rdfs:comment>
         <rdf:type rdf:resource="&FilmographieV1;Personne"/>
         <rdf:type rdf:resource="&untitled-ontology-311;Acteur"/>
         <rdf:type rdf:resource="&foaf;Person"/>
+        <rdfs:label>Dorothée Briere Meritte</rdfs:label>
         <FilmographieV1:aPourPrenom>Dorothée</FilmographieV1:aPourPrenom>
         <FilmographieV1:aPourNom> Briere</FilmographieV1:aPourNom>
         <FilmographieV1:aPourNom>Briere Meritte</FilmographieV1:aPourNom>
@@ -4744,6 +4758,7 @@ http://fr.wikipedia.org/wiki/Portail:Cin%C3%A9ma/Arborescence</rdfs:comment>
         <rdf:type rdf:resource="&FilmographieV1;Personne"/>
         <rdf:type rdf:resource="&untitled-ontology-311;Acteur"/>
         <rdf:type rdf:resource="&foaf;Person"/>
+        <rdfs:label>Elliot Latil</rdfs:label>
         <FilmographieV1:aPourNom>Latil</FilmographieV1:aPourNom>
         <FilmographieV1:aPourPrenom>Elliot</FilmographieV1:aPourPrenom>
         <FilmographieV1:aPourSexe rdf:resource="&FilmographieV1;Masculin"/>
@@ -4800,6 +4815,7 @@ http://fr.wikipedia.org/wiki/Portail:Cin%C3%A9ma/Arborescence</rdfs:comment>
         <rdf:type rdf:resource="&FilmographieV1;Personne"/>
         <rdf:type rdf:resource="&untitled-ontology-311;Acteur"/>
         <rdf:type rdf:resource="&foaf;Person"/>
+        <rdfs:label>Emilie Caen</rdfs:label>
         <FilmographieV1:aPourPrenom>Emilie</FilmographieV1:aPourPrenom>
         <FilmographieV1:aPourNom>Caen</FilmographieV1:aPourNom>
         <FilmographieV1:aPourSexe rdf:resource="&FilmographieV1;Feminin"/>
@@ -4856,11 +4872,12 @@ http://fr.wikipedia.org/wiki/Portail:Cin%C3%A9ma/Arborescence</rdfs:comment>
         <rdf:type rdf:resource="&untitled-ontology-311;Réalisateur"/>
         <rdf:type rdf:resource="&untitled-ontology-311;Scénariste"/>
         <rdf:type rdf:resource="&foaf;Person"/>
+        <rdfs:label>Eric Toledano</rdfs:label>
         <FilmographieV1:aPourPrenom>Eric</FilmographieV1:aPourPrenom>
         <FilmographieV1:aPourNom>Toledano</FilmographieV1:aPourNom>
-        <FilmographieV1:estDansDistributionArtistique rdf:resource="http://www.irit.fr/recherches/MELODI/ontologies/FilmographiesV1.owl#Intouchables"/>
         <FilmographieV1:contribueAOeuvre rdf:resource="http://www.irit.fr/recherches/MELODI/ontologies/FilmographiesV1.owl#Intouchables"/>
         <FilmographieV1:aRealise rdf:resource="http://www.irit.fr/recherches/MELODI/ontologies/FilmographiesV1.owl#Intouchables"/>
+        <FilmographieV1:estDansDistributionArtistique rdf:resource="http://www.irit.fr/recherches/MELODI/ontologies/FilmographiesV1.owl#Intouchables"/>
         <FilmographieV1:contribueArtistiquementAOeuvre rdf:resource="http://www.irit.fr/recherches/MELODI/ontologies/FilmographiesV1.owl#Intouchables"/>
         <FilmographieV1:aEcritScenarioDe rdf:resource="http://www.irit.fr/recherches/MELODI/ontologies/FilmographiesV1.owl#Intouchables"/>
     </owl:NamedIndividual>
@@ -4876,6 +4893,7 @@ http://fr.wikipedia.org/wiki/Portail:Cin%C3%A9ma/Arborescence</rdfs:comment>
         <rdf:type rdf:resource="&FilmographieV1;Personne"/>
         <rdf:type rdf:resource="&untitled-ontology-311;Acteur"/>
         <rdf:type rdf:resource="&foaf;Person"/>
+        <rdfs:label>Fabrice Mantegna</rdfs:label>
         <FilmographieV1:aPourPrenom>Fabrice</FilmographieV1:aPourPrenom>
         <FilmographieV1:aPourNom>Mantegna</FilmographieV1:aPourNom>
         <FilmographieV1:aPourSexe rdf:resource="&FilmographieV1;Masculin"/>
@@ -4964,6 +4982,7 @@ http://fr.wikipedia.org/wiki/Portail:Cin%C3%A9ma/Arborescence</rdfs:comment>
         <rdf:type rdf:resource="&FilmographieV1;Personne"/>
         <rdf:type rdf:resource="&untitled-ontology-311;Acteur"/>
         <rdf:type rdf:resource="&foaf;Person"/>
+        <rdfs:label>François Bureloup</rdfs:label>
         <FilmographieV1:aPourPrenom>François</FilmographieV1:aPourPrenom>
         <FilmographieV1:aPourNom>Bureloup</FilmographieV1:aPourNom>
         <FilmographieV1:aPourSexe rdf:resource="&FilmographieV1;Masculin"/>
@@ -5020,6 +5039,7 @@ http://fr.wikipedia.org/wiki/Portail:Cin%C3%A9ma/Arborescence</rdfs:comment>
         <rdf:type rdf:resource="&FilmographieV1;Personne"/>
         <rdf:type rdf:resource="&untitled-ontology-311;Acteur"/>
         <rdf:type rdf:resource="&foaf;Person"/>
+        <rdfs:label>François Caron</rdfs:label>
         <FilmographieV1:aPourPrenom>François</FilmographieV1:aPourPrenom>
         <FilmographieV1:aPourNom>Caron</FilmographieV1:aPourNom>
         <FilmographieV1:aPourSexe rdf:resource="&FilmographieV1;Masculin"/>
@@ -5076,6 +5096,7 @@ http://fr.wikipedia.org/wiki/Portail:Cin%C3%A9ma/Arborescence</rdfs:comment>
         <rdf:type rdf:resource="&FilmographieV1;Personne"/>
         <rdf:type rdf:resource="&untitled-ontology-311;Acteur"/>
         <rdf:type rdf:resource="&foaf;Person"/>
+        <rdfs:label>François Cluzet</rdfs:label>
         <FilmographieV1:aPourNom>Cluzet</FilmographieV1:aPourNom>
         <FilmographieV1:aPourPrenom>François</FilmographieV1:aPourPrenom>
         <FilmographieV1:aPourSexe rdf:resource="&FilmographieV1;Masculin"/>
@@ -5233,6 +5254,7 @@ http://fr.wikipedia.org/wiki/Portail:Cin%C3%A9ma/Arborescence</rdfs:comment>
         <rdf:type rdf:resource="&FilmographieV1;Personne"/>
         <rdf:type rdf:resource="&untitled-ontology-311;Acteur"/>
         <rdf:type rdf:resource="&foaf;Person"/>
+        <rdfs:label>Grégoire Oestermann</rdfs:label>
         <FilmographieV1:aPourNom>Oestermann</FilmographieV1:aPourNom>
         <FilmographieV1:aPourPrenom>Grégoire</FilmographieV1:aPourPrenom>
         <FilmographieV1:aPourSexe rdf:resource="&FilmographieV1;Masculin"/>
@@ -5289,6 +5311,7 @@ http://fr.wikipedia.org/wiki/Portail:Cin%C3%A9ma/Arborescence</rdfs:comment>
         <rdf:type rdf:resource="&FilmographieV1;Personne"/>
         <rdf:type rdf:resource="&untitled-ontology-311;Acteur"/>
         <rdf:type rdf:resource="&foaf;Person"/>
+        <rdfs:label>Hedi Bouchefana</rdfs:label>
         <FilmographieV1:aPourPrenom>Hédi</FilmographieV1:aPourPrenom>
         <FilmographieV1:aPourNom>Bouchefana</FilmographieV1:aPourNom>
         <FilmographieV1:aPourSexe rdf:resource="&FilmographieV1;Masculin"/>
@@ -5345,6 +5368,7 @@ http://fr.wikipedia.org/wiki/Portail:Cin%C3%A9ma/Arborescence</rdfs:comment>
         <rdf:type rdf:resource="&FilmographieV1;Personne"/>
         <rdf:type rdf:resource="&untitled-ontology-311;Acteur"/>
         <rdf:type rdf:resource="&foaf;Person"/>
+        <rdfs:label>Ian Fenelon</rdfs:label>
         <FilmographieV1:aPourPrenom>Ian</FilmographieV1:aPourPrenom>
         <FilmographieV1:aPourNom>Fenelon</FilmographieV1:aPourNom>
         <FilmographieV1:aPourSexe rdf:resource="&FilmographieV1;Masculin"/>
@@ -5618,6 +5642,7 @@ http://fr.wikipedia.org/wiki/Portail:Cin%C3%A9ma/Arborescence</rdfs:comment>
         <rdf:type rdf:resource="&FilmographieV1;Personne"/>
         <rdf:type rdf:resource="&untitled-ontology-311;Acteur"/>
         <rdf:type rdf:resource="&foaf;Person"/>
+        <rdfs:label>Jean-François Cayrey</rdfs:label>
         <FilmographieV1:aPourNom>Cayrey</FilmographieV1:aPourNom>
         <FilmographieV1:aPourPrenom>Jean-François</FilmographieV1:aPourPrenom>
         <FilmographieV1:aPourSexe rdf:resource="&FilmographieV1;Masculin"/>
@@ -5674,6 +5699,7 @@ http://fr.wikipedia.org/wiki/Portail:Cin%C3%A9ma/Arborescence</rdfs:comment>
         <rdf:type rdf:resource="&FilmographieV1;Personne"/>
         <rdf:type rdf:resource="&untitled-ontology-311;Acteur"/>
         <rdf:type rdf:resource="&foaf;Person"/>
+        <rdfs:label>Jérôme Pauwels</rdfs:label>
         <FilmographieV1:aPourPrenom>Jérôme</FilmographieV1:aPourPrenom>
         <FilmographieV1:aPourNom>Pauwels</FilmographieV1:aPourNom>
         <FilmographieV1:aPourSexe rdf:resource="&FilmographieV1;Masculin"/>
@@ -5729,6 +5755,7 @@ http://fr.wikipedia.org/wiki/Portail:Cin%C3%A9ma/Arborescence</rdfs:comment>
         <rdf:type rdf:resource="&FilmographieV1;IntervenantArtistiqueDansOeuvre"/>
         <rdf:type rdf:resource="&FilmographieV1;Personne"/>
         <rdf:type rdf:resource="&foaf;Person"/>
+        <rdfs:label>Karin Viard</rdfs:label>
         <FilmographieV1:aPourNom>Viard</FilmographieV1:aPourNom>
         <FilmographieV1:aPourPrenom>Karin</FilmographieV1:aPourPrenom>
         <FilmographieV1:aPourSexe rdf:resource="&FilmographieV1;Feminin"/>
@@ -5755,6 +5782,7 @@ http://fr.wikipedia.org/wiki/Portail:Cin%C3%A9ma/Arborescence</rdfs:comment>
         <rdf:type rdf:resource="&FilmographieV1;Personne"/>
         <rdf:type rdf:resource="&untitled-ontology-311;Acteur"/>
         <rdf:type rdf:resource="&foaf;Person"/>
+        <rdfs:label>Kévin Wamo</rdfs:label>
         <FilmographieV1:aPourNom>Wamo</FilmographieV1:aPourNom>
         <FilmographieV1:aPourPrenom>Kevin</FilmographieV1:aPourPrenom>
         <FilmographieV1:aPourSexe rdf:resource="&FilmographieV1;Masculin"/>
@@ -5827,12 +5855,13 @@ http://fr.wikipedia.org/wiki/Portail:Cin%C3%A9ma/Arborescence</rdfs:comment>
         <rdf:type rdf:resource="&FilmographieV1;Personne"/>
         <rdf:type rdf:resource="&untitled-ontology-311;Producteur"/>
         <rdf:type rdf:resource="&foaf;Person"/>
+        <rdfs:label>Laurent Zeitoun</rdfs:label>
         <FilmographieV1:aPourNom>Zeitoun</FilmographieV1:aPourNom>
         <FilmographieV1:aPourPrenom>Laurent</FilmographieV1:aPourPrenom>
-        <FilmographieV1:estDansDistributionArtistique rdf:resource="http://www.irit.fr/recherches/MELODI/ontologies/FilmographiesV1.owl#Intouchables"/>
         <FilmographieV1:contribueArtistiquementAOeuvre rdf:resource="http://www.irit.fr/recherches/MELODI/ontologies/FilmographiesV1.owl#Intouchables"/>
-        <FilmographieV1:contribueAOeuvre rdf:resource="http://www.irit.fr/recherches/MELODI/ontologies/FilmographiesV1.owl#Intouchables"/>
         <FilmographieV1:aProduit rdf:resource="http://www.irit.fr/recherches/MELODI/ontologies/FilmographiesV1.owl#Intouchables"/>
+        <FilmographieV1:estDansDistributionArtistique rdf:resource="http://www.irit.fr/recherches/MELODI/ontologies/FilmographiesV1.owl#Intouchables"/>
+        <FilmographieV1:contribueAOeuvre rdf:resource="http://www.irit.fr/recherches/MELODI/ontologies/FilmographiesV1.owl#Intouchables"/>
     </owl:NamedIndividual>
     
 
@@ -5938,6 +5967,7 @@ http://fr.wikipedia.org/wiki/Portail:Cin%C3%A9ma/Arborescence</rdfs:comment>
         <rdf:type rdf:resource="&FilmographieV1;Personne"/>
         <rdf:type rdf:resource="&untitled-ontology-311;Acteur"/>
         <rdf:type rdf:resource="&foaf;Person"/>
+        <rdfs:label>Marie-Laure Descoureaux</rdfs:label>
         <FilmographieV1:aPourNom>Descoureaux</FilmographieV1:aPourNom>
         <FilmographieV1:aPourPrenom>Marie-Laure</FilmographieV1:aPourPrenom>
         <FilmographieV1:aPourSexe rdf:resource="&FilmographieV1;Feminin"/>
@@ -5993,6 +6023,7 @@ http://fr.wikipedia.org/wiki/Portail:Cin%C3%A9ma/Arborescence</rdfs:comment>
         <rdf:type rdf:resource="&FilmographieV1;IntervenantArtistiqueDansOeuvre"/>
         <rdf:type rdf:resource="&FilmographieV1;Personne"/>
         <rdf:type rdf:resource="&foaf;Person"/>
+        <rdfs:label>Marina Foïs</rdfs:label>
         <FilmographieV1:aPourPrenom>Marina</FilmographieV1:aPourPrenom>
         <FilmographieV1:aPourNom>Foïs</FilmographieV1:aPourNom>
         <FilmographieV1:aPourSexe rdf:resource="&FilmographieV1;Feminin"/>
@@ -6019,6 +6050,7 @@ http://fr.wikipedia.org/wiki/Portail:Cin%C3%A9ma/Arborescence</rdfs:comment>
         <rdf:type rdf:resource="&FilmographieV1;Personne"/>
         <rdf:type rdf:resource="&untitled-ontology-311;Acteur"/>
         <rdf:type rdf:resource="&foaf;Person"/>
+        <rdfs:label>Michel Winogradoff</rdfs:label>
         <FilmographieV1:aPourPrenom>Michel</FilmographieV1:aPourPrenom>
         <FilmographieV1:aPourNom>Winogradoff</FilmographieV1:aPourNom>
         <FilmographieV1:aPourSexe rdf:resource="&FilmographieV1;Masculin"/>
@@ -6093,6 +6125,7 @@ http://fr.wikipedia.org/wiki/Portail:Cin%C3%A9ma/Arborescence</rdfs:comment>
         <rdf:type rdf:resource="&FilmographieV1;Personne"/>
         <rdf:type rdf:resource="&untitled-ontology-311;Acteur"/>
         <rdf:type rdf:resource="&foaf;Person"/>
+        <rdfs:label>Nicky Marbot</rdfs:label>
         <FilmographieV1:aPourPrenom>Nicky</FilmographieV1:aPourPrenom>
         <FilmographieV1:aPourNom>Marbot</FilmographieV1:aPourNom>
         <FilmographieV1:aPourSexe rdf:resource="&FilmographieV1;Masculin"/>
@@ -6148,11 +6181,12 @@ http://fr.wikipedia.org/wiki/Portail:Cin%C3%A9ma/Arborescence</rdfs:comment>
         <rdf:type rdf:resource="&FilmographieV1;Personne"/>
         <rdf:type rdf:resource="&untitled-ontology-311;Producteur"/>
         <rdf:type rdf:resource="&foaf;Person"/>
+        <rdfs:label>Nicolas Duval</rdfs:label>
         <FilmographieV1:aPourPrenom>Nicolas</FilmographieV1:aPourPrenom>
         <FilmographieV1:aPourNom>Duval</FilmographieV1:aPourNom>
         <FilmographieV1:aProduit rdf:resource="http://www.irit.fr/recherches/MELODI/ontologies/FilmographiesV1.owl#Intouchables"/>
-        <FilmographieV1:contribueAOeuvre rdf:resource="http://www.irit.fr/recherches/MELODI/ontologies/FilmographiesV1.owl#Intouchables"/>
         <FilmographieV1:contribueArtistiquementAOeuvre rdf:resource="http://www.irit.fr/recherches/MELODI/ontologies/FilmographiesV1.owl#Intouchables"/>
+        <FilmographieV1:contribueAOeuvre rdf:resource="http://www.irit.fr/recherches/MELODI/ontologies/FilmographiesV1.owl#Intouchables"/>
         <FilmographieV1:estDansDistributionArtistique rdf:resource="http://www.irit.fr/recherches/MELODI/ontologies/FilmographiesV1.owl#Intouchables"/>
     </owl:NamedIndividual>
     
@@ -6167,6 +6201,7 @@ http://fr.wikipedia.org/wiki/Portail:Cin%C3%A9ma/Arborescence</rdfs:comment>
         <rdf:type rdf:resource="&untitled-ontology-311;Réalisateur"/>
         <rdf:type rdf:resource="&untitled-ontology-311;Scénariste"/>
         <rdf:type rdf:resource="&foaf;Person"/>
+        <rdfs:label>Olivier Nakache</rdfs:label>
         <FilmographieV1:aPourNom>Nakache</FilmographieV1:aPourNom>
         <FilmographieV1:aPourPrenom>Olivier</FilmographieV1:aPourPrenom>
         <FilmographieV1:aRealise rdf:resource="http://www.irit.fr/recherches/MELODI/ontologies/FilmographiesV1.owl#Intouchables"/>
@@ -6282,6 +6317,7 @@ http://fr.wikipedia.org/wiki/Portail:Cin%C3%A9ma/Arborescence</rdfs:comment>
         <rdf:type rdf:resource="&FilmographieV1;Personne"/>
         <rdf:type rdf:resource="&untitled-ontology-311;Acteur"/>
         <rdf:type rdf:resource="&foaf;Person"/>
+        <rdfs:label>Philippe Le Fèvre</rdfs:label>
         <FilmographieV1:aPourPrenom>Philippe</FilmographieV1:aPourPrenom>
         <FilmographieV1:aPourNom>Le Fèvre</FilmographieV1:aPourNom>
         <FilmographieV1:aPourSexe rdf:resource="&FilmographieV1;Masculin"/>
@@ -6443,6 +6479,7 @@ http://fr.wikipedia.org/wiki/Portail:Cin%C3%A9ma/Arborescence</rdfs:comment>
         <rdf:type rdf:resource="&FilmographieV1;Personne"/>
         <rdf:type rdf:resource="&untitled-ontology-311;Acteur"/>
         <rdf:type rdf:resource="&foaf;Person"/>
+        <rdfs:label>Renaud Barse</rdfs:label>
         <FilmographieV1:aPourPrenom>Renaud</FilmographieV1:aPourPrenom>
         <FilmographieV1:aPourNom>Barse</FilmographieV1:aPourNom>
         <FilmographieV1:aPourSexe rdf:resource="&FilmographieV1;Masculin"/>
@@ -6499,6 +6536,7 @@ http://fr.wikipedia.org/wiki/Portail:Cin%C3%A9ma/Arborescence</rdfs:comment>
         <rdf:type rdf:resource="&FilmographieV1;Personne"/>
         <rdf:type rdf:resource="&untitled-ontology-311;Acteur"/>
         <rdf:type rdf:resource="&foaf;Person"/>
+        <rdfs:label>Salimata Kamate</rdfs:label>
         <FilmographieV1:aPourPrenom>Salimata</FilmographieV1:aPourPrenom>
         <FilmographieV1:aPourNom>Kamate</FilmographieV1:aPourNom>
         <FilmographieV1:aPourSexe rdf:resource="&FilmographieV1;Feminin"/>
@@ -6555,6 +6593,7 @@ http://fr.wikipedia.org/wiki/Portail:Cin%C3%A9ma/Arborescence</rdfs:comment>
         <rdf:type rdf:resource="&FilmographieV1;Personne"/>
         <rdf:type rdf:resource="&untitled-ontology-311;Acteur"/>
         <rdf:type rdf:resource="&foaf;Person"/>
+        <rdfs:label>Sylvain Lazard</rdfs:label>
         <FilmographieV1:aPourPrenom>Sylvain</FilmographieV1:aPourPrenom>
         <FilmographieV1:aPourNom>Lazard</FilmographieV1:aPourNom>
         <FilmographieV1:aPourSexe rdf:resource="&FilmographieV1;Masculin"/>
@@ -6611,6 +6650,7 @@ http://fr.wikipedia.org/wiki/Portail:Cin%C3%A9ma/Arborescence</rdfs:comment>
         <rdf:type rdf:resource="&FilmographieV1;Personne"/>
         <rdf:type rdf:resource="&untitled-ontology-311;Acteur"/>
         <rdf:type rdf:resource="&foaf;Person"/>
+        <rdfs:label>Thomas Solivères</rdfs:label>
         <FilmographieV1:aPourPrenom>Thomas</FilmographieV1:aPourPrenom>
         <FilmographieV1:aPourNom>Soliveres</FilmographieV1:aPourNom>
         <FilmographieV1:aPourSexe rdf:resource="&FilmographieV1;Masculin"/>
@@ -6902,8 +6942,9 @@ http://fr.wikipedia.org/wiki/Portail:Cin%C3%A9ma/Arborescence</rdfs:comment>
         <rdf:type rdf:resource="&FilmographieV1;Personne"/>
         <rdf:type rdf:resource="&untitled-ontology-311;Producteur"/>
         <rdf:type rdf:resource="&foaf;Person"/>
-        <FilmographieV1:aPourNom>Zenou</FilmographieV1:aPourNom>
+        <rdfs:label>Yann Zenou</rdfs:label>
         <FilmographieV1:aPourPrenom>Yann</FilmographieV1:aPourPrenom>
+        <FilmographieV1:aPourNom>Zenou</FilmographieV1:aPourNom>
         <FilmographieV1:contribueAOeuvre rdf:resource="http://www.irit.fr/recherches/MELODI/ontologies/FilmographiesV1.owl#Intouchables"/>
         <FilmographieV1:aProduit rdf:resource="http://www.irit.fr/recherches/MELODI/ontologies/FilmographiesV1.owl#Intouchables"/>
         <FilmographieV1:estDansDistributionArtistique rdf:resource="http://www.irit.fr/recherches/MELODI/ontologies/FilmographiesV1.owl#Intouchables"/>
@@ -6930,6 +6971,7 @@ http://fr.wikipedia.org/wiki/Portail:Cin%C3%A9ma/Arborescence</rdfs:comment>
         <rdf:type rdf:resource="&FilmographieV1;Femme"/>
         <rdf:type rdf:resource="&FilmographieV1;Personne"/>
         <rdf:type rdf:resource="&foaf;Person"/>
+        <rdfs:label>Adélaïde de Clermont Tonnerre </rdfs:label>
         <foaf:familyName>de Clermont Tonnerre</foaf:familyName>
         <foaf:givenName>Adelaide</foaf:givenName>
         <FilmographieV1:aPourSexe rdf:resource="&FilmographieV1;Feminin"/>
@@ -6944,6 +6986,7 @@ http://fr.wikipedia.org/wiki/Portail:Cin%C3%A9ma/Arborescence</rdfs:comment>
         <rdf:type rdf:resource="&FilmographieV1;Homme"/>
         <rdf:type rdf:resource="&FilmographieV1;Personne"/>
         <rdf:type rdf:resource="&foaf;Person"/>
+        <rdfs:label>Alain Chouffan</rdfs:label>
         <foaf:givenName>Alain</foaf:givenName>
         <foaf:familyName>Chouffan</foaf:familyName>
         <FilmographieV1:aPourSexe rdf:resource="&FilmographieV1;Masculin"/>
@@ -6958,6 +7001,7 @@ http://fr.wikipedia.org/wiki/Portail:Cin%C3%A9ma/Arborescence</rdfs:comment>
         <rdf:type rdf:resource="&FilmographieV1;Homme"/>
         <rdf:type rdf:resource="&FilmographieV1;Personne"/>
         <rdf:type rdf:resource="&foaf;Person"/>
+        <rdfs:label>André Bercoff</rdfs:label>
         <foaf:givenName>Andre</foaf:givenName>
         <foaf:familyName>Bercoff</foaf:familyName>
         <FilmographieV1:aPourSexe rdf:resource="&FilmographieV1;Masculin"/>
@@ -6972,6 +7016,7 @@ http://fr.wikipedia.org/wiki/Portail:Cin%C3%A9ma/Arborescence</rdfs:comment>
         <rdf:type rdf:resource="&FilmographieV1;Femme"/>
         <rdf:type rdf:resource="&FilmographieV1;Personne"/>
         <rdf:type rdf:resource="&foaf;Person"/>
+        <rdfs:label>Anne Kerloch</rdfs:label>
         <foaf:givenName>Anne</foaf:givenName>
         <foaf:familyName>Kerloch</foaf:familyName>
         <FilmographieV1:aPourSexe rdf:resource="&FilmographieV1;Feminin"/>
@@ -6986,6 +7031,7 @@ http://fr.wikipedia.org/wiki/Portail:Cin%C3%A9ma/Arborescence</rdfs:comment>
         <rdf:type rdf:resource="&FilmographieV1;Homme"/>
         <rdf:type rdf:resource="&FilmographieV1;Personne"/>
         <rdf:type rdf:resource="&foaf;Person"/>
+        <rdfs:label>Bruno Cras</rdfs:label>
         <foaf:familyName>Cras</foaf:familyName>
         <foaf:givenName>Bruno</foaf:givenName>
         <FilmographieV1:aPourSexe rdf:resource="&FilmographieV1;Masculin"/>
@@ -7000,6 +7046,7 @@ http://fr.wikipedia.org/wiki/Portail:Cin%C3%A9ma/Arborescence</rdfs:comment>
         <rdf:type rdf:resource="&FilmographieV1;Femme"/>
         <rdf:type rdf:resource="&FilmographieV1;Personne"/>
         <rdf:type rdf:resource="&foaf;Person"/>
+        <rdfs:label>Carine Chenaux</rdfs:label>
         <foaf:givenName>Carine</foaf:givenName>
         <foaf:familyName>Chenaux</foaf:familyName>
         <FilmographieV1:aPourSexe rdf:resource="&FilmographieV1;Feminin"/>
@@ -7029,6 +7076,7 @@ http://fr.wikipedia.org/wiki/Portail:Cin%C3%A9ma/Arborescence</rdfs:comment>
         <rdf:type rdf:resource="&FilmographieV1;Femme"/>
         <rdf:type rdf:resource="&FilmographieV1;Personne"/>
         <rdf:type rdf:resource="&foaf;Person"/>
+        <rdfs:label>Danielle Attali</rdfs:label>
         <foaf:familyName>Attali</foaf:familyName>
         <foaf:givenName>Danielle</foaf:givenName>
         <FilmographieV1:aPourSexe rdf:resource="&FilmographieV1;Feminin"/>
@@ -7073,6 +7121,7 @@ http://fr.wikipedia.org/wiki/Portail:Cin%C3%A9ma/Arborescence</rdfs:comment>
         <rdf:type rdf:resource="&FilmographieV1;Femme"/>
         <rdf:type rdf:resource="&FilmographieV1;Personne"/>
         <rdf:type rdf:resource="&foaf;Person"/>
+        <rdfs:label>Françoise Delbecq</rdfs:label>
         <foaf:givenName>Francoise</foaf:givenName>
         <foaf:familyName>Delbecq</foaf:familyName>
         <FilmographieV1:aPourSexe rdf:resource="&FilmographieV1;Feminin"/>
@@ -7087,6 +7136,7 @@ http://fr.wikipedia.org/wiki/Portail:Cin%C3%A9ma/Arborescence</rdfs:comment>
         <rdf:type rdf:resource="&FilmographieV1;Femme"/>
         <rdf:type rdf:resource="&FilmographieV1;Personne"/>
         <rdf:type rdf:resource="&foaf;Person"/>
+        <rdfs:label>Karia Alibert</rdfs:label>
         <foaf:familyName>Alibert</foaf:familyName>
         <foaf:givenName>Katia</foaf:givenName>
         <FilmographieV1:aPourSexe rdf:resource="&FilmographieV1;Feminin"/>
@@ -7118,6 +7168,7 @@ http://fr.wikipedia.org/wiki/Portail:Cin%C3%A9ma/Arborescence</rdfs:comment>
         <rdf:type rdf:resource="&FilmographieV1;Homme"/>
         <rdf:type rdf:resource="&FilmographieV1;Personne"/>
         <rdf:type rdf:resource="&foaf;Person"/>
+        <rdfs:label>Nicolas Demorand</rdfs:label>
         <foaf:familyName>Demorand</foaf:familyName>
         <foaf:firstName>Nicolas</foaf:firstName>
         <FilmographieV1:aPourSexe rdf:resource="&FilmographieV1;Masculin"/>
@@ -7133,6 +7184,7 @@ http://fr.wikipedia.org/wiki/Portail:Cin%C3%A9ma/Arborescence</rdfs:comment>
         <rdf:type rdf:resource="&FilmographieV1;Homme"/>
         <rdf:type rdf:resource="&FilmographieV1;Personne"/>
         <rdf:type rdf:resource="&foaf;Person"/>
+        <rdfs:label>Olivier Benkemoun</rdfs:label>
         <foaf:familyName>Benkemoun</foaf:familyName>
         <foaf:givenName>Olivier</foaf:givenName>
         <FilmographieV1:aPourSexe rdf:resource="&FilmographieV1;Masculin"/>
@@ -7147,6 +7199,7 @@ http://fr.wikipedia.org/wiki/Portail:Cin%C3%A9ma/Arborescence</rdfs:comment>
         <rdf:type rdf:resource="&FilmographieV1;Homme"/>
         <rdf:type rdf:resource="&FilmographieV1;Personne"/>
         <rdf:type rdf:resource="&foaf;Person"/>
+        <rdfs:label>Philippe Bourbeillon</rdfs:label>
         <foaf:familyName>Bourbeillon</foaf:familyName>
         <foaf:givenName>Philippe</foaf:givenName>
         <FilmographieV1:aPourSexe rdf:resource="&FilmographieV1;Masculin"/>
