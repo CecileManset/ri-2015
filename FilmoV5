@@ -88,12 +88,12 @@
         <rdfs:subPropertyOf rdf:resource="&FilmographieV1;aPourContributeur"/>
         <rdfs:subPropertyOf>
             <rdf:Description>
-                <owl:inverseOf rdf:resource="&FilmographieV1;estDansDistributionArtistique"/>
+                <owl:inverseOf rdf:resource="&FilmographieV1;contribueAOeuvre"/>
             </rdf:Description>
         </rdfs:subPropertyOf>
         <rdfs:subPropertyOf>
             <rdf:Description>
-                <owl:inverseOf rdf:resource="&FilmographieV1;contribueAOeuvre"/>
+                <owl:inverseOf rdf:resource="&FilmographieV1;estDansDistributionArtistique"/>
             </rdf:Description>
         </rdfs:subPropertyOf>
     </owl:ObjectProperty>
@@ -197,17 +197,17 @@
         <rdfs:domain rdf:resource="&FilmographieV1;Oeuvre"/>
         <owl:equivalentProperty>
             <rdf:Description>
+                <owl:inverseOf rdf:resource="&FilmographieV1;estDansDistributionArtistique"/>
+            </rdf:Description>
+        </owl:equivalentProperty>
+        <owl:equivalentProperty>
+            <rdf:Description>
                 <owl:inverseOf rdf:resource="&FilmographieV1;contribueAOeuvre"/>
                 <owl:equivalentProperty>
                     <rdf:Description>
                         <owl:inverseOf rdf:resource="&FilmographieV1;estDansDistributionArtistique"/>
                     </rdf:Description>
                 </owl:equivalentProperty>
-            </rdf:Description>
-        </owl:equivalentProperty>
-        <owl:equivalentProperty>
-            <rdf:Description>
-                <owl:inverseOf rdf:resource="&FilmographieV1;estDansDistributionArtistique"/>
             </rdf:Description>
         </owl:equivalentProperty>
     </owl:ObjectProperty>
@@ -2163,14 +2163,14 @@ http://fr.wikipedia.org/wiki/Cat%C3%A9gorie:Courant_cin%C3%A9matographique</rdfs
         <rdfs:subClassOf rdf:resource="&FilmographieV1;OeuvreArtistique"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&FilmographieV1;aPourRealisateur"/>
+                <owl:onProperty rdf:resource="&FilmographieV1;aPourProducteur"/>
                 <owl:onClass rdf:resource="&FilmographieV1;Personne"/>
                 <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minQualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&FilmographieV1;aPourProducteur"/>
+                <owl:onProperty rdf:resource="&FilmographieV1;aPourRealisateur"/>
                 <owl:onClass rdf:resource="&FilmographieV1;Personne"/>
                 <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minQualifiedCardinality>
             </owl:Restriction>
@@ -2438,8 +2438,8 @@ http://fr.wikipedia.org/wiki/Portail:Cin%C3%A9ma/Arborescence</rdfs:comment>
                 <owl:intersectionOf rdf:parseType="Collection">
                     <rdf:Description rdf:about="&FilmographieV1;Oeuvre"/>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="&FilmographieV1;estUneLocalisationDe"/>
-                        <owl:someValuesFrom rdf:resource="&FilmographieV1;Oeuvre"/>
+                        <owl:onProperty rdf:resource="&FilmographieV1;estLocalisePour"/>
+                        <owl:someValuesFrom rdf:resource="&FilmographieV1;AireGeographique"/>
                     </owl:Restriction>
                 </owl:intersectionOf>
             </owl:Class>
@@ -2449,8 +2449,8 @@ http://fr.wikipedia.org/wiki/Portail:Cin%C3%A9ma/Arborescence</rdfs:comment>
                 <owl:intersectionOf rdf:parseType="Collection">
                     <rdf:Description rdf:about="&FilmographieV1;Oeuvre"/>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="&FilmographieV1;estLocalisePour"/>
-                        <owl:someValuesFrom rdf:resource="&FilmographieV1;AireGeographique"/>
+                        <owl:onProperty rdf:resource="&FilmographieV1;estUneLocalisationDe"/>
+                        <owl:someValuesFrom rdf:resource="&FilmographieV1;Oeuvre"/>
                     </owl:Restriction>
                 </owl:intersectionOf>
             </owl:Class>
@@ -3276,8 +3276,7 @@ http://fr.wikipedia.org/wiki/Portail:Cin%C3%A9ma/Arborescence</rdfs:comment>
     <!-- http://www.semanticweb.org/cathy/ontologies/2014/5/untitled-ontology-311#Acteur -->
 
     <owl:Class rdf:about="&untitled-ontology-311;Acteur">
-        <rdfs:label xml:lang="fr">acteur
-</rdfs:label>
+        <rdfs:label xml:lang="fr">acteur</rdfs:label>
         <owl:equivalentClass>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
@@ -3319,8 +3318,7 @@ http://fr.wikipedia.org/wiki/Portail:Cin%C3%A9ma/Arborescence</rdfs:comment>
     <!-- http://www.semanticweb.org/cathy/ontologies/2014/5/untitled-ontology-311#Réalisateur -->
 
     <owl:Class rdf:about="&untitled-ontology-311;Réalisateur">
-        <rdfs:label xml:lang="fr">réalisateur
-</rdfs:label>
+        <rdfs:label xml:lang="fr">réalisateur</rdfs:label>
         <owl:equivalentClass>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
@@ -5138,8 +5136,8 @@ http://fr.wikipedia.org/wiki/Portail:Cin%C3%A9ma/Arborescence</rdfs:comment>
         <FilmographieV1:apparaitDans rdf:resource="http://www.irit.fr/recherches/MELODI/ontologies/FilmographiesV1.owl#Intouchables"/>
     </owl:NamedIndividual>
     <owl:Axiom>
-        <rdfs:label xml:lang="fr">Fred</rdfs:label>
         <rdfs:label>Frédérique</rdfs:label>
+        <rdfs:label xml:lang="fr">Fred</rdfs:label>
         <owl:annotatedTarget rdf:resource="&FilmographieV1;RoleSecondaire"/>
         <owl:annotatedSource rdf:resource="http://www.irit.fr/recherches/MELODI/ontologies/FilmographiesV1.owl#FredDansIntouchables"/>
         <owl:annotatedProperty rdf:resource="&rdf;type"/>
@@ -6189,6 +6187,7 @@ http://fr.wikipedia.org/wiki/Portail:Cin%C3%A9ma/Arborescence</rdfs:comment>
         <rdf:type rdf:resource="&FilmographieV1;Personne"/>
         <rdf:type rdf:resource="&untitled-ontology-311;Acteur"/>
         <rdf:type rdf:resource="&foaf;Person"/>
+        <rdfs:label>Omar Sy</rdfs:label>
         <FilmographieV1:aPourPrenom xml:lang="fr">Omar</FilmographieV1:aPourPrenom>
         <FilmographieV1:aPourNom xml:lang="fr">Sy</FilmographieV1:aPourNom>
         <FilmographieV1:aPourSexe rdf:resource="&FilmographieV1;Masculin"/>
@@ -7269,17 +7268,31 @@ http://fr.wikipedia.org/wiki/Portail:Cin%C3%A9ma/Arborescence</rdfs:comment>
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="&FilmographieV1;PrixMiseEnSceneUnCertainRegard"/>
-            <rdf:Description rdf:about="&FilmographieV1;PrixSpecialJuryUnCertainRegard"/>
-            <rdf:Description rdf:about="&FilmographieV1;PrixUnCertainRegard"/>
+            <rdf:Description rdf:about="&FilmographieV1;PrixMeilleureDirectionArtistique"/>
+            <rdf:Description rdf:about="&FilmographieV1;PrixMeilleureMiseEnScene"/>
+            <rdf:Description rdf:about="&FilmographieV1;PrixMeilleureProduction"/>
+            <rdf:Description rdf:about="&FilmographieV1;PrixMeilleureRealisation"/>
+            <rdf:Description rdf:about="&FilmographieV1;PrixScenario"/>
         </owl:members>
     </rdf:Description>
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="&FilmographieV1;PrixMeilleurDecor"/>
-            <rdf:Description rdf:about="&FilmographieV1;PrixMeilleurMaquillage"/>
-            <rdf:Description rdf:about="&FilmographieV1;PrixMeilleursCostumes"/>
+            <rdf:Description rdf:about="&FilmographieV1;PrixSpecifiqueCeremonieCesar"/>
+            <rdf:Description rdf:about="&FilmographieV1;PrixSpecifiqueFestivalDeDeauville"/>
+            <rdf:Description rdf:about="&FilmographieV1;PrixSpecifiqueFestivaleDeCannes"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="&FilmographieV1;GrandPrix"/>
+            <rdf:Description rdf:about="&FilmographieV1;PrixCritiqueInternationale"/>
+            <rdf:Description rdf:about="&FilmographieV1;PrixFilmdAnimation"/>
+            <rdf:Description rdf:about="&FilmographieV1;PrixHonneur"/>
+            <rdf:Description rdf:about="&FilmographieV1;PrixJury"/>
+            <rdf:Description rdf:about="&FilmographieV1;PrixMeilleurFilm"/>
+            <rdf:Description rdf:about="&FilmographieV1;PrixMeilleurPremierFilm"/>
         </owl:members>
     </rdf:Description>
     <rdf:Description>
@@ -7292,9 +7305,9 @@ http://fr.wikipedia.org/wiki/Portail:Cin%C3%A9ma/Arborescence</rdfs:comment>
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="&FilmographieV1;PrixDirection"/>
-            <rdf:Description rdf:about="&FilmographieV1;PrixInterpretation"/>
-            <rdf:Description rdf:about="&FilmographieV1;PrixTechnique"/>
+            <rdf:Description rdf:about="&FilmographieV1;CameraOr"/>
+            <rdf:Description rdf:about="&FilmographieV1;Cinefondation"/>
+            <rdf:Description rdf:about="&FilmographieV1;UnCertainRegard"/>
         </owl:members>
     </rdf:Description>
     <rdf:Description>
@@ -7315,47 +7328,9 @@ http://fr.wikipedia.org/wiki/Portail:Cin%C3%A9ma/Arborescence</rdfs:comment>
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="&FilmographieV1;PrixMeilleurActeur"/>
-            <rdf:Description rdf:about="&FilmographieV1;PrixMeilleurActeurSecondRole"/>
-            <rdf:Description rdf:about="&FilmographieV1;PrixMeilleurEspoirFeminin"/>
-            <rdf:Description rdf:about="&FilmographieV1;PrixMeilleurEspoirMasculin"/>
-            <rdf:Description rdf:about="&FilmographieV1;PrixMeilleureActrice"/>
-            <rdf:Description rdf:about="&FilmographieV1;PrixMeilleureActriceSecondRole"/>
-        </owl:members>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
-        <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="&FilmographieV1;CameraOr"/>
-            <rdf:Description rdf:about="&FilmographieV1;Cinefondation"/>
-            <rdf:Description rdf:about="&FilmographieV1;UnCertainRegard"/>
-        </owl:members>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
-        <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="&FilmographieV1;PrixSpecifiqueCeremonieCesar"/>
-            <rdf:Description rdf:about="&FilmographieV1;PrixSpecifiqueFestivalDeDeauville"/>
-            <rdf:Description rdf:about="&FilmographieV1;PrixSpecifiqueFestivaleDeCannes"/>
-        </owl:members>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
-        <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="&FilmographieV1;PrixMeilleureDirectionArtistique"/>
-            <rdf:Description rdf:about="&FilmographieV1;PrixMeilleureMiseEnScene"/>
-            <rdf:Description rdf:about="&FilmographieV1;PrixMeilleureProduction"/>
-            <rdf:Description rdf:about="&FilmographieV1;PrixMeilleureRealisation"/>
-            <rdf:Description rdf:about="&FilmographieV1;PrixScenario"/>
-        </owl:members>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
-        <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="&FilmographieV1;FestivalDeCannes"/>
-            <rdf:Description rdf:about="&FilmographieV1;FestivalDeClermontFerrand"/>
-            <rdf:Description rdf:about="&FilmographieV1;FestivalDeDeauville"/>
-            <rdf:Description rdf:about="&FilmographieV1;FestivalDuReel"/>
+            <rdf:Description rdf:about="&FilmographieV1;DeuxiemePrixCinefondation"/>
+            <rdf:Description rdf:about="&FilmographieV1;PremierPrixCinefondation"/>
+            <rdf:Description rdf:about="&FilmographieV1;TroisiemePrixCinefondation"/>
         </owl:members>
     </rdf:Description>
     <rdf:Description>
@@ -7370,21 +7345,45 @@ http://fr.wikipedia.org/wiki/Portail:Cin%C3%A9ma/Arborescence</rdfs:comment>
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="&FilmographieV1;DeuxiemePrixCinefondation"/>
-            <rdf:Description rdf:about="&FilmographieV1;PremierPrixCinefondation"/>
-            <rdf:Description rdf:about="&FilmographieV1;TroisiemePrixCinefondation"/>
+            <rdf:Description rdf:about="&FilmographieV1;PrixDirection"/>
+            <rdf:Description rdf:about="&FilmographieV1;PrixInterpretation"/>
+            <rdf:Description rdf:about="&FilmographieV1;PrixTechnique"/>
         </owl:members>
     </rdf:Description>
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="&FilmographieV1;GrandPrix"/>
-            <rdf:Description rdf:about="&FilmographieV1;PrixCritiqueInternationale"/>
-            <rdf:Description rdf:about="&FilmographieV1;PrixFilmdAnimation"/>
-            <rdf:Description rdf:about="&FilmographieV1;PrixHonneur"/>
-            <rdf:Description rdf:about="&FilmographieV1;PrixJury"/>
-            <rdf:Description rdf:about="&FilmographieV1;PrixMeilleurFilm"/>
-            <rdf:Description rdf:about="&FilmographieV1;PrixMeilleurPremierFilm"/>
+            <rdf:Description rdf:about="&FilmographieV1;PrixMiseEnSceneUnCertainRegard"/>
+            <rdf:Description rdf:about="&FilmographieV1;PrixSpecialJuryUnCertainRegard"/>
+            <rdf:Description rdf:about="&FilmographieV1;PrixUnCertainRegard"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="&FilmographieV1;PrixMeilleurActeur"/>
+            <rdf:Description rdf:about="&FilmographieV1;PrixMeilleurActeurSecondRole"/>
+            <rdf:Description rdf:about="&FilmographieV1;PrixMeilleurEspoirFeminin"/>
+            <rdf:Description rdf:about="&FilmographieV1;PrixMeilleurEspoirMasculin"/>
+            <rdf:Description rdf:about="&FilmographieV1;PrixMeilleureActrice"/>
+            <rdf:Description rdf:about="&FilmographieV1;PrixMeilleureActriceSecondRole"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="&FilmographieV1;FestivalDeCannes"/>
+            <rdf:Description rdf:about="&FilmographieV1;FestivalDeClermontFerrand"/>
+            <rdf:Description rdf:about="&FilmographieV1;FestivalDeDeauville"/>
+            <rdf:Description rdf:about="&FilmographieV1;FestivalDuReel"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="&FilmographieV1;PrixMeilleurDecor"/>
+            <rdf:Description rdf:about="&FilmographieV1;PrixMeilleurMaquillage"/>
+            <rdf:Description rdf:about="&FilmographieV1;PrixMeilleursCostumes"/>
         </owl:members>
     </rdf:Description>
 </rdf:RDF>
