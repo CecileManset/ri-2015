@@ -85,16 +85,16 @@
     <owl:ObjectProperty rdf:about="&FilmographieV1;aDansDistributionArtistique">
         <rdfs:label xml:lang="fr">a dans sa distribution artistique</rdfs:label>
         <rdfs:label xml:lang="fr">a dans son casting</rdfs:label>
-        <rdfs:label xml:lang="fr">a pour personne</rdfs:label>
+        <rdfs:label xml:lang="fr">a pour personnes</rdfs:label>
         <rdfs:subPropertyOf rdf:resource="&FilmographieV1;aPourContributeur"/>
         <rdfs:subPropertyOf>
             <rdf:Description>
-                <owl:inverseOf rdf:resource="&FilmographieV1;estDansDistributionArtistique"/>
+                <owl:inverseOf rdf:resource="&FilmographieV1;contribueAOeuvre"/>
             </rdf:Description>
         </rdfs:subPropertyOf>
         <rdfs:subPropertyOf>
             <rdf:Description>
-                <owl:inverseOf rdf:resource="&FilmographieV1;contribueAOeuvre"/>
+                <owl:inverseOf rdf:resource="&FilmographieV1;estDansDistributionArtistique"/>
             </rdf:Description>
         </rdfs:subPropertyOf>
     </owl:ObjectProperty>
@@ -195,7 +195,7 @@
     <owl:ObjectProperty rdf:about="&FilmographieV1;aPourContributeur">
         <rdfs:label xml:lang="en">has as contributor</rdfs:label>
         <rdfs:label xml:lang="fr">a pour contributeur</rdfs:label>
-        <rdfs:label xml:lang="fr">a pour personne</rdfs:label>
+        <rdfs:label xml:lang="fr">a pour personnes</rdfs:label>
         <rdfs:domain rdf:resource="&FilmographieV1;Oeuvre"/>
         <owl:equivalentProperty>
             <rdf:Description>
@@ -221,18 +221,18 @@
     <owl:ObjectProperty rdf:about="&FilmographieV1;aPourContributeurArtistique">
         <rdfs:label xml:lang="en">has as artistic contributor</rdfs:label>
         <rdfs:label xml:lang="fr">a pour contributeur artistique</rdfs:label>
-        <rdfs:label xml:lang="fr">a pour personne</rdfs:label>
+        <rdfs:label xml:lang="fr">a pour personnes</rdfs:label>
         <rdfs:domain rdf:resource="&FilmographieV1;OeuvreArtistique"/>
         <rdfs:subPropertyOf rdf:resource="&FilmographieV1;aPourContributeur"/>
         <owl:inverseOf rdf:resource="&FilmographieV1;contribueArtistiquementAOeuvre"/>
         <rdfs:subPropertyOf>
             <rdf:Description>
-                <owl:inverseOf rdf:resource="&FilmographieV1;contribueAOeuvre"/>
+                <owl:inverseOf rdf:resource="&FilmographieV1;estDansDistributionArtistique"/>
             </rdf:Description>
         </rdfs:subPropertyOf>
         <rdfs:subPropertyOf>
             <rdf:Description>
-                <owl:inverseOf rdf:resource="&FilmographieV1;estDansDistributionArtistique"/>
+                <owl:inverseOf rdf:resource="&FilmographieV1;contribueAOeuvre"/>
             </rdf:Description>
         </rdfs:subPropertyOf>
     </owl:ObjectProperty>
