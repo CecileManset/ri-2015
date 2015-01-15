@@ -88,12 +88,12 @@
         <rdfs:subPropertyOf rdf:resource="&FilmographieV1;aPourContributeur"/>
         <rdfs:subPropertyOf>
             <rdf:Description>
-                <owl:inverseOf rdf:resource="&FilmographieV1;contribueAOeuvre"/>
+                <owl:inverseOf rdf:resource="&FilmographieV1;estDansDistributionArtistique"/>
             </rdf:Description>
         </rdfs:subPropertyOf>
         <rdfs:subPropertyOf>
             <rdf:Description>
-                <owl:inverseOf rdf:resource="&FilmographieV1;estDansDistributionArtistique"/>
+                <owl:inverseOf rdf:resource="&FilmographieV1;contribueAOeuvre"/>
             </rdf:Description>
         </rdfs:subPropertyOf>
     </owl:ObjectProperty>
@@ -197,17 +197,17 @@
         <rdfs:domain rdf:resource="&FilmographieV1;Oeuvre"/>
         <owl:equivalentProperty>
             <rdf:Description>
+                <owl:inverseOf rdf:resource="&FilmographieV1;estDansDistributionArtistique"/>
+            </rdf:Description>
+        </owl:equivalentProperty>
+        <owl:equivalentProperty>
+            <rdf:Description>
                 <owl:inverseOf rdf:resource="&FilmographieV1;contribueAOeuvre"/>
                 <owl:equivalentProperty>
                     <rdf:Description>
                         <owl:inverseOf rdf:resource="&FilmographieV1;estDansDistributionArtistique"/>
                     </rdf:Description>
                 </owl:equivalentProperty>
-            </rdf:Description>
-        </owl:equivalentProperty>
-        <owl:equivalentProperty>
-            <rdf:Description>
-                <owl:inverseOf rdf:resource="&FilmographieV1;estDansDistributionArtistique"/>
             </rdf:Description>
         </owl:equivalentProperty>
     </owl:ObjectProperty>
@@ -224,12 +224,12 @@
         <owl:inverseOf rdf:resource="&FilmographieV1;contribueArtistiquementAOeuvre"/>
         <rdfs:subPropertyOf>
             <rdf:Description>
-                <owl:inverseOf rdf:resource="&FilmographieV1;estDansDistributionArtistique"/>
+                <owl:inverseOf rdf:resource="&FilmographieV1;contribueAOeuvre"/>
             </rdf:Description>
         </rdfs:subPropertyOf>
         <rdfs:subPropertyOf>
             <rdf:Description>
-                <owl:inverseOf rdf:resource="&FilmographieV1;contribueAOeuvre"/>
+                <owl:inverseOf rdf:resource="&FilmographieV1;estDansDistributionArtistique"/>
             </rdf:Description>
         </rdfs:subPropertyOf>
     </owl:ObjectProperty>
@@ -473,12 +473,12 @@
         <owl:inverseOf rdf:resource="&FilmographieV1;estTechnicienPour"/>
         <rdfs:subPropertyOf>
             <rdf:Description>
-                <owl:inverseOf rdf:resource="&FilmographieV1;contribueAOeuvre"/>
+                <owl:inverseOf rdf:resource="&FilmographieV1;estDansDistributionArtistique"/>
             </rdf:Description>
         </rdfs:subPropertyOf>
         <rdfs:subPropertyOf>
             <rdf:Description>
-                <owl:inverseOf rdf:resource="&FilmographieV1;estDansDistributionArtistique"/>
+                <owl:inverseOf rdf:resource="&FilmographieV1;contribueAOeuvre"/>
             </rdf:Description>
         </rdfs:subPropertyOf>
     </owl:ObjectProperty>
@@ -5208,6 +5208,7 @@ http://fr.wikipedia.org/wiki/Portail:Cin%C3%A9ma/Arborescence</rdfs:comment>
         <rdf:type rdf:resource="&FilmographieV1;Competition"/>
         <rdf:type rdf:resource="&FilmographieV1;Evenement"/>
         <rdfs:label xml:lang="fr">7ème cérémonie</rdfs:label>
+        <rdfs:label xml:lang="fr">Globes de Cristal</rdfs:label>
         <rdfs:label xml:lang="fr">globes de cristal</rdfs:label>
         <FilmographieV1:aPourDate>2012</FilmographieV1:aPourDate>
         <FilmographieV1:aPourTitre xml:lang="fr">Globes de cristal</FilmographieV1:aPourTitre>
