@@ -88,12 +88,12 @@
         <rdfs:subPropertyOf rdf:resource="&FilmographieV1;aPourContributeur"/>
         <rdfs:subPropertyOf>
             <rdf:Description>
-                <owl:inverseOf rdf:resource="&FilmographieV1;estDansDistributionArtistique"/>
+                <owl:inverseOf rdf:resource="&FilmographieV1;contribueAOeuvre"/>
             </rdf:Description>
         </rdfs:subPropertyOf>
         <rdfs:subPropertyOf>
             <rdf:Description>
-                <owl:inverseOf rdf:resource="&FilmographieV1;contribueAOeuvre"/>
+                <owl:inverseOf rdf:resource="&FilmographieV1;estDansDistributionArtistique"/>
             </rdf:Description>
         </rdfs:subPropertyOf>
     </owl:ObjectProperty>
@@ -194,12 +194,8 @@
     <owl:ObjectProperty rdf:about="&FilmographieV1;aPourContributeur">
         <rdfs:label xml:lang="en">has as contributor</rdfs:label>
         <rdfs:label xml:lang="fr">a pour contributeur</rdfs:label>
+        <rdfs:label xml:lang="fr">a pour personne</rdfs:label>
         <rdfs:domain rdf:resource="&FilmographieV1;Oeuvre"/>
-        <owl:equivalentProperty>
-            <rdf:Description>
-                <owl:inverseOf rdf:resource="&FilmographieV1;estDansDistributionArtistique"/>
-            </rdf:Description>
-        </owl:equivalentProperty>
         <owl:equivalentProperty>
             <rdf:Description>
                 <owl:inverseOf rdf:resource="&FilmographieV1;contribueAOeuvre"/>
@@ -208,6 +204,11 @@
                         <owl:inverseOf rdf:resource="&FilmographieV1;estDansDistributionArtistique"/>
                     </rdf:Description>
                 </owl:equivalentProperty>
+            </rdf:Description>
+        </owl:equivalentProperty>
+        <owl:equivalentProperty>
+            <rdf:Description>
+                <owl:inverseOf rdf:resource="&FilmographieV1;estDansDistributionArtistique"/>
             </rdf:Description>
         </owl:equivalentProperty>
     </owl:ObjectProperty>
@@ -224,12 +225,12 @@
         <owl:inverseOf rdf:resource="&FilmographieV1;contribueArtistiquementAOeuvre"/>
         <rdfs:subPropertyOf>
             <rdf:Description>
-                <owl:inverseOf rdf:resource="&FilmographieV1;contribueAOeuvre"/>
+                <owl:inverseOf rdf:resource="&FilmographieV1;estDansDistributionArtistique"/>
             </rdf:Description>
         </rdfs:subPropertyOf>
         <rdfs:subPropertyOf>
             <rdf:Description>
-                <owl:inverseOf rdf:resource="&FilmographieV1;estDansDistributionArtistique"/>
+                <owl:inverseOf rdf:resource="&FilmographieV1;contribueAOeuvre"/>
             </rdf:Description>
         </rdfs:subPropertyOf>
     </owl:ObjectProperty>
@@ -473,12 +474,12 @@
         <owl:inverseOf rdf:resource="&FilmographieV1;estTechnicienPour"/>
         <rdfs:subPropertyOf>
             <rdf:Description>
-                <owl:inverseOf rdf:resource="&FilmographieV1;estDansDistributionArtistique"/>
+                <owl:inverseOf rdf:resource="&FilmographieV1;contribueAOeuvre"/>
             </rdf:Description>
         </rdfs:subPropertyOf>
         <rdfs:subPropertyOf>
             <rdf:Description>
-                <owl:inverseOf rdf:resource="&FilmographieV1;contribueAOeuvre"/>
+                <owl:inverseOf rdf:resource="&FilmographieV1;estDansDistributionArtistique"/>
             </rdf:Description>
         </rdfs:subPropertyOf>
     </owl:ObjectProperty>
@@ -1509,7 +1510,7 @@
 
     <owl:ObjectProperty rdf:about="&FilmographieV1;recompensePersonne">
         <rdfs:label xml:lang="en">rewards person</rdfs:label>
-        <rdfs:label xml:lang="fr">personnes récompensées par ce prix</rdfs:label>
+        <rdfs:label xml:lang="fr">personnes récompensées</rdfs:label>
         <rdfs:label xml:lang="fr">récompense personne</rdfs:label>
         <rdfs:subPropertyOf rdf:resource="&FilmographieV1;recompense"/>
         <rdfs:subPropertyOf>
@@ -6415,7 +6416,7 @@ http://fr.wikipedia.org/wiki/Portail:Cin%C3%A9ma/Arborescence</rdfs:comment>
         <rdf:type rdf:resource="&FilmographieV1;PrixFilm"/>
         <rdf:type rdf:resource="&FilmographieV1;PrixMeilleurFilm"/>
         <rdf:type rdf:resource="&FilmographieV1;PrixOeuvreCinematographique"/>
-        <rdfs:label xml:lang="fr">Prix meilleur film globes de cristal 2012</rdfs:label>
+        <rdfs:label xml:lang="fr">Prix meilleur film Globes de Cristal 2012</rdfs:label>
         <FilmographieV1:estDecernePar rdf:resource="http://www.irit.fr/recherches/MELODI/ontologies/FilmographiesV1.owl#GlobesDeCristal2012"/>
         <FilmographieV1:recompenseFilm rdf:resource="http://www.irit.fr/recherches/MELODI/ontologies/FilmographiesV1.owl#Intouchables"/>
         <FilmographieV1:recompense rdf:resource="http://www.irit.fr/recherches/MELODI/ontologies/FilmographiesV1.owl#Intouchables"/>
